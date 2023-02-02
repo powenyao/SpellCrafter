@@ -56,6 +56,7 @@ public class ProjectileLauncher : MonoBehaviour
         }
     }
 
+    [ContextMenu("Launch")]
     void Launch()
     {
         Core.Ins.UIEffectsManager.RequestPopUp(this.transform, CastPopupText);

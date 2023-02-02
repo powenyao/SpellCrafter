@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5574610788596416507}
   - component: {fileID: 5574610788596416506}
   - component: {fileID: 5574610788596416505}
-  - component: {fileID: 5574610788596416504}
   - component: {fileID: 5574610788596416487}
   m_Layer: 0
   m_Name: Core
@@ -31,7 +30,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4616966329547298036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d655059ad4002c74a8b00b0871aa0870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIEffectsManager: {fileID: 5574610788596416504}
+  UIEffectsManager: {fileID: 7363677391917448195}
   Debug: {fileID: 5574610788596416505}
   Subservices: {fileID: 5574610788596416487}
 --- !u!114 &5574610788596416505
@@ -62,29 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cf93109aaac2743a6542351c1c5cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5574610788596416504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5574610788596416486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b4f2cd026e1b24cb0544b58a56cd37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultPopupPrefab: {fileID: 0}
-  defaultClosePopupPrefab: {fileID: 0}
-  popupPooler: {fileID: 0}
-  popupPoolerSize: 20
-  popupDisappearStyle: 0
-  popupColorDefault: {r: 0, g: 0, b: 0, a: 0}
-  popupDirectionDefault: {x: 0, y: 0, z: 0}
-  popupMoveYSpeedDefault: 0
-  popupScaleFactorDefault: 0
-  popupMoveYSpeedSmall: 0
-  popupScaleFactorSmall: 0
 --- !u!114 &5574610788596416487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,3 +74,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7b53a4b6b020a47b72b81b20e6a114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8889920626133288865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4616966329547298036}
+  - component: {fileID: 7363677391917448195}
+  - component: {fileID: 836840349069231104}
+  m_Layer: 0
+  m_Name: UIEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4616966329547298036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889920626133288865}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5574610788596416507}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7363677391917448195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889920626133288865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b4f2cd026e1b24cb0544b58a56cd37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultPopupPrefab: {fileID: 6284035934781621350, guid: 82b42460953f49449b8201398f342f18,
+    type: 3}
+  defaultClosePopupPrefab: {fileID: 6284035934781621350, guid: 82b42460953f49449b8201398f342f18,
+    type: 3}
+  popupPooler: {fileID: 836840349069231104}
+  popupPoolerSize: 20
+  popupDisappearStyle: 0
+  popupColorDefault: {r: 0, g: 0, b: 0, a: 0}
+  popupDirectionDefault: {x: 0, y: 0, z: 0}
+  popupMoveYSpeedDefault: 0
+  popupScaleFactorDefault: 0
+  popupMoveYSpeedSmall: 0
+  popupScaleFactorSmall: 0
+--- !u!114 &836840349069231104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889920626133288865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0894412f9607046439d96e1ac7622e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolRoot: {fileID: 4616966329547298036}

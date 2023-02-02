@@ -201,11 +201,13 @@ public class Controller_UIEffects : MonoBehaviour
         UI_FloatingText uiFloatingText = popupGo.GetComponent<UI_FloatingText>();
         if (useDefaultPopupSetting)
         {
-            uiFloatingText.Setup(content, Color.white, parent.gameObject, Vector3.up, 10f, 0.1f, Enum_PopupDisappearStyle.FadeOut);
+//            uiFloatingText.Setup(content, Color.white, parent.gameObject, Vector3.up, 10f, 0.1f, Enum_PopupDisappearStyle.FadeOut);
+            uiFloatingText.Setup(content, Color.white, this.gameObject, Vector3.up, 10f, 0.1f, Enum_PopupDisappearStyle.FadeOut);
         }
         else
         {
-            uiFloatingText.Setup(content, color, parent.gameObject, moveDirection, moveYSpeed, scaleFactor, disappearStyle);
+//            uiFloatingText.Setup(content, color, parent.gameObject, moveDirection, moveYSpeed, scaleFactor, disappearStyle);
+            uiFloatingText.Setup(content, color, this.gameObject, moveDirection, moveYSpeed, scaleFactor, disappearStyle);
         }
         uiFloatingText.pooler = popupPooler;
         popupGo.SetActive(true);

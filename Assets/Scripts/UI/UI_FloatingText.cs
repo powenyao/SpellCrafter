@@ -4,11 +4,11 @@ using UnityEngine;
 public class UI_FloatingText : MonoBehaviour, IPooledObject
 {
     [HideInInspector] public ObjectPooler pooler;
-    [SerializeField] private float disappearTime;
-    [SerializeField] private float disappearSpeed;
+    [SerializeField] private float disappearTime = 1f;
+    [SerializeField] private float disappearSpeed = 20f;
     
-    private TextMeshPro _textMesh;
-    private Color _textColor;
+    [SerializeField] private TMP_Text _textMesh;
+    private Color _textColor = Color.magenta;
     private float _disappearTimer;
     private Vector3 _moveVector;
     private static int _sortingOrder;
@@ -23,7 +23,11 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
     
     private void Awake()
     {
-        _textMesh = transform.GetComponent<TextMeshPro>();
+        if (!_textMesh)
+        {
+            _textMesh = transform.GetComponent<TMP_Text>();
+            Dev.LogWarning("No text mesh pro");
+        }
         originalScale = transform.localScale;
         unnormalizedScale = originalScale;
     }
@@ -41,7 +45,7 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
     public void OnObjectSpawn()
     {
         // prevent former spawned text obscuring later spawned text
-        _textMesh.sortingOrder = ++_sortingOrder;
+        //_textMesh.sortingOrder = ++_sortingOrder;
         _disappearTimer = disappearTime;
     }
 
