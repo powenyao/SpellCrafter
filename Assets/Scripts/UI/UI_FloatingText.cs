@@ -28,7 +28,7 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
             _textMesh = transform.GetComponent<TMP_Text>();
             Dev.LogWarning("[UI_FloatingText.cs] Awake > No text mesh pro");
         }
-        originalScale = transform.localScale;
+        originalScale = _textMesh.transform.localScale;
         unnormalizedScale = originalScale;
     }
     public void OnObjectSpawn(IObjectPooler newPooler)
@@ -100,7 +100,7 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
             }
         }
 
-        transform.localScale = new Vector3(unnormalizedScale.x, unnormalizedScale.y, unnormalizedScale.z) * scaleFactor;
+        _textMesh.transform.localScale = new Vector3(unnormalizedScale.x, unnormalizedScale.y, unnormalizedScale.z) * scaleFactor;
 
         _disappearTimer -= Time.deltaTime;
         

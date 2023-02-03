@@ -57,4 +57,16 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     {
         
     }
+
+    public void SetupComposition(SpellComposition composition)
+    {
+        List<Enum_SpellComponents_Effects> listEffect = composition.GetEffects();
+        foreach (var e in listEffect)
+        {
+            if (e == Enum_SpellComponents_Effects.Widen)
+            {
+                this.transform.localScale = this.transform.localScale * 2;
+            }
+        }
+    }
 }

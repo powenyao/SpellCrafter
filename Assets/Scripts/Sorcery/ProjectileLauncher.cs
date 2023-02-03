@@ -5,7 +5,10 @@ using UnityEngine;
 public class ProjectileLauncher : MonoBehaviour
 {
     [SerializeField]
-    private string CastPopupText = "Cast Firebolt";
+    private string _launcherIdentifier = "Default Auto Launcher";
+    
+    [SerializeField]
+    private string _castPopupText = "Default Cast Firebolt";
     [SerializeField]
     private Enum_SpellShapes shape = Enum_SpellShapes.Sphere;
     [SerializeField]
@@ -19,7 +22,6 @@ public class ProjectileLauncher : MonoBehaviour
     [SerializeField]
     private Transform targetTransform;
 
-
     //How long it takes to launch another spell
     [SerializeField]
     private float launchCooldown = 1f;
@@ -29,6 +31,7 @@ public class ProjectileLauncher : MonoBehaviour
 
     private Subservice_Sorcery sorcery;
 
+    private SpellComposition composition;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,7 @@ public class ProjectileLauncher : MonoBehaviour
 
         targetTransform.position = launchTransform.position - launchTransform.forward * 1;
         sorcery = (Subservice_Sorcery)Core.Ins.Subservices.GetSubservice(nameof(Subservice_Sorcery));
+        ComposeSpell();
     }
 
     // Update is called once per frame
@@ -47,7 +51,6 @@ public class ProjectileLauncher : MonoBehaviour
         if (timePassed >= launchCooldown)
         {
             Launch();
-
             timePassed = 0;
         }
         else
@@ -59,10 +62,10 @@ public class ProjectileLauncher : MonoBehaviour
     [ContextMenu("Launch")]
     void Launch()
     {
-        Core.Ins.UIEffectsManager.RequestPopUp(this.transform, CastPopupText);
-
-        //var projectile = GameObject.Instantiate(PF_Projectile);
-        var projectile = sorcery.GetSpell(shape, element, launchTransform.position, launchTransform.rotation);
+        Core.Ins.UIEffectsManager.RequestPopUp(this.transform, _castPopupText);
+        
+        var projectile = sorcery.GetSpell(composition, launchTransform.position,
+            launchTransform.rotation);
         
         //projectile.transform.position = launchTransform.position;
         var spell = projectile.GetComponent<SpellBase>();
@@ -70,5 +73,27 @@ public class ProjectileLauncher : MonoBehaviour
         // Target will be decided by the spell if it is homing, otherwise straight line?
         // spell.Cast(targetTransform);
         spell.Cast();
+    }
+
+    [ContextMenu("ComposeSpell")]
+    void ComposeSpell()
+    {
+        //var projectile = GameObject.Instantiate(PF_Projectile);
+        //var projectile = sorcery.GetSpell(shape, element, launchTransform.position, launchTransform.rotation);
+        composition = new SpellComposition(shape, element);
+        //composition.AddSpellComponent(Enum_SpellComponentCategories.Effects, Enum_SpellComponents_Effects.Concentrate.ToString());
+    }
+    
+    [ContextMenu("ComposeSpellWithConcentrate")]
+    void DebugComposeSpellWithConcentrate()
+    {
+        composition = new SpellComposition(shape, element);
+        composition.AddSpellComponent(Enum_SpellComponentCategories.Effects, Enum_SpellComponents_Effects.Concentrate.ToString());
+    }
+    [ContextMenu("ComposeSpellWithWiden")]
+    void DebugComposeSpellWithWiden()
+    {
+        composition = new SpellComposition(shape, element);
+        composition.AddSpellComponent(Enum_SpellComponentCategories.Effects, Enum_SpellComponents_Effects.Widen.ToString());
     }
 }

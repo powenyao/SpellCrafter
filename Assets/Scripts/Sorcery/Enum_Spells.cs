@@ -58,7 +58,7 @@ public enum Enum_SpellLauncherComponents
     FireMode
         
 }
-public enum Enum_SpellComponents
+public enum Enum_SpellComponentCategories
 {
     None,
     Element,
@@ -66,4 +66,31 @@ public enum Enum_SpellComponents
     Effects,
     Origin,
     Target
+}
+
+public enum Enum_SpellComponents_Effects
+{
+    None,
+    Pull,
+    Widen,
+    Concentrate,
+    SpeedUp,
+    AoE,
+}
+
+public enum Enum_SpellComponents_Tracking
+{
+    None,
+    Partial,
+    Full
+}
+public enum Enum_SpellComponents_Path
+{
+    None,
+    Spiral,
+    Curved,
+    Straight,
+    Manhattan,
+    SineWave,
+    
 }

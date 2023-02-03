@@ -19,6 +19,9 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
     [SerializeField]
     private Enum_Elements _currentElement = Enum_Elements.GrayNormal;
 
+    [SerializeField]
+    private List<Enum_SpellComponents_Effects> _listSpellComponents = new List<Enum_SpellComponents_Effects>();
+
     void Start()
     {
         ChangeElemental(_currentElement);
