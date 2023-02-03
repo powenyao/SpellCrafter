@@ -62,10 +62,13 @@ public class ProjectileLauncher : MonoBehaviour
         Core.Ins.UIEffectsManager.RequestPopUp(this.transform, CastPopupText);
 
         //var projectile = GameObject.Instantiate(PF_Projectile);
-        var projectile = sorcery.GetSpell(shape, element, launchTransform.position);
+        var projectile = sorcery.GetSpell(shape, element, launchTransform.position, launchTransform.rotation);
         
         //projectile.transform.position = launchTransform.position;
         var spell = projectile.GetComponent<SpellBase>();
-        spell.Cast(targetTransform);
+
+        // Target will be decided by the spell if it is homing, otherwise straight line?
+        // spell.Cast(targetTransform);
+        spell.Cast();
     }
 }
