@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
+
 //using XROSUI.Scripts;
 
 public enum Enum_XROSUI_Color
@@ -29,8 +30,10 @@ public class Controller_UIEffects : MonoBehaviour
     // object pooler for popup
     [SerializeField]
     private GameObject defaultPopupPrefab;
+
     [SerializeField]
     private GameObject defaultClosePopupPrefab;
+
     public ObjectPooler popupPooler;
     public int popupPoolerSize = 20;
     private bool _hasCreatedPool = false;
@@ -40,8 +43,12 @@ public class Controller_UIEffects : MonoBehaviour
     public Vector3 popupDirectionDefault;
     public float popupMoveYSpeedDefault;
     public float popupScaleFactorDefault;
-    [HideInInspector] public float popupMoveYSpeedSmall;
-    [HideInInspector] public float popupScaleFactorSmall;
+
+    [HideInInspector]
+    public float popupMoveYSpeedSmall;
+
+    [HideInInspector]
+    public float popupScaleFactorSmall;
 
     void OnEnable()
     {
@@ -98,16 +105,17 @@ public class Controller_UIEffects : MonoBehaviour
     }
 
     #region Popup
+
     public void RequestSmallPopup(MonoBehaviour mb, string content, Color color = default)
     {
         this.RequestPopUp(mb.transform, content, color, defaultClosePopupPrefab);
     }
-    
+
     public void RequestSmallPopUp(Transform parent, string content, Color color = default)
     {
         this.RequestPopUp(parent, content, color, defaultClosePopupPrefab);
     }
-    
+
     //public void RequestPopUp(Transform parent, string content, Color color = default, GameObject popupPrefab = null)
     //{
     //    if (popupPrefab == null && defaultPopupPrefab == null)
@@ -136,7 +144,7 @@ public class Controller_UIEffects : MonoBehaviour
     //    //Ideally, we might just want something with total of 2 lines
     //    //var uiFloatingText = popupPooler.SpawnFromPool<UI_FloatingText>(parent.position, Quaternion.identity);
     //    //uiFloatingText.Setup(content, color);
-        
+
     //    GameObject popupGo = popupPooler.SpawnFromPool(parent.position, Quaternion.identity);
     //    UI_FloatingText uiFloatingText = popupGo.GetComponent<UI_FloatingText>();
 
@@ -149,15 +157,17 @@ public class Controller_UIEffects : MonoBehaviour
     //    popupGo.SetActive(true);
     //}
 
-    public void RequestPopUp(Transform parent, string content, Color color = default, GameObject popupPrefab = null, 
+    public void RequestPopUp(Transform parent, string content, Color color = default, GameObject popupPrefab = null,
         bool useDefaultPopupSetting = false, Enum_PopupDisappearStyle disappearStyle = Enum_PopupDisappearStyle.None,
         Vector3 moveDirection = default, float moveYSpeed = default, float scaleFactor = default)
     {
         if (popupPrefab == null && defaultPopupPrefab == null)
         {
-            Dev.LogWarning("No default popup prefab assigned in Core.Ins.UIEFfects");
+            Dev.LogWarning(
+                "[Controller_UIEffects.cs] RequestPopup > No default popup prefab assigned in Core.Ins.UIEFfects");
             return;
         }
+
         if (popupPrefab == null)
         {
             popupPrefab = defaultPopupPrefab;
@@ -169,18 +179,22 @@ public class Controller_UIEffects : MonoBehaviour
             //color = new Color();
             color = popupColorDefault;
         }
+
         if (moveDirection == default)
         {
             moveDirection = popupDirectionDefault;
         }
+
         if (moveYSpeed == default)
         {
             moveYSpeed = popupMoveYSpeedDefault;
         }
+
         if (scaleFactor == default)
         {
             scaleFactor = popupScaleFactorDefault;
         }
+
         if (disappearStyle == Enum_PopupDisappearStyle.None)
         {
             disappearStyle = popupDisappearStyle;
@@ -197,19 +211,22 @@ public class Controller_UIEffects : MonoBehaviour
         //var uiFloatingText = popupPooler.SpawnFromPool<UI_FloatingText>(parent.position, Quaternion.identity);
         //uiFloatingText.Setup(content, color);
 
-        GameObject popupGo = popupPooler.SpawnFromPool(parent.position, Quaternion.identity);
-        UI_FloatingText uiFloatingText = popupGo.GetComponent<UI_FloatingText>();
+        var popupGo = popupPooler.SpawnFromPool(parent.position, Quaternion.identity);
+        var uiFloatingText = popupGo.GetComponent<UI_FloatingText>();
         if (useDefaultPopupSetting)
         {
 //            uiFloatingText.Setup(content, Color.white, parent.gameObject, Vector3.up, 10f, 0.1f, Enum_PopupDisappearStyle.FadeOut);
-            uiFloatingText.Setup(content, Color.white, this.gameObject, Vector3.up, 10f, 0.1f, Enum_PopupDisappearStyle.FadeOut);
+            uiFloatingText.Setup(content, Color.white, this.gameObject, Vector3.up, popupMoveYSpeedDefault,
+                popupScaleFactorDefault, Enum_PopupDisappearStyle.FadeOut);
         }
         else
         {
 //            uiFloatingText.Setup(content, color, parent.gameObject, moveDirection, moveYSpeed, scaleFactor, disappearStyle);
-            uiFloatingText.Setup(content, color, this.gameObject, moveDirection, moveYSpeed, scaleFactor, disappearStyle);
+            uiFloatingText.Setup(content, color, this.gameObject, moveDirection, moveYSpeed, scaleFactor,
+                disappearStyle);
         }
-        uiFloatingText.pooler = popupPooler;
+        
+        //uiFloatingText.pooler = popupPooler;
         popupGo.SetActive(true);
     }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooler : MonoBehaviour
+public class ObjectPooler : MonoBehaviour, IObjectPooler
 {
     public Transform poolRoot;
     private GameObject _objectPrefab;
@@ -44,7 +44,7 @@ public class ObjectPooler : MonoBehaviour
         IPooledObject pooledObj = obj.GetComponent<IPooledObject>();
         if (pooledObj != null)
         {
-            pooledObj.OnObjectSpawn();
+            pooledObj.OnObjectSpawn(this);
         }
         return obj;
     }

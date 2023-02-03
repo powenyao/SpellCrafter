@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UI_FloatingText : MonoBehaviour, IPooledObject
 {
-    [HideInInspector] public ObjectPooler pooler;
+    private IObjectPooler pooler;
     [SerializeField] private float disappearTime = 1f;
     [SerializeField] private float disappearSpeed = 20f;
     
@@ -26,24 +26,14 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
         if (!_textMesh)
         {
             _textMesh = transform.GetComponent<TMP_Text>();
-            Dev.LogWarning("No text mesh pro");
+            Dev.LogWarning("[UI_FloatingText.cs] Awake > No text mesh pro");
         }
         originalScale = transform.localScale;
         unnormalizedScale = originalScale;
     }
-
-    //private void OnEnable()
-    //{
-    //    Dev.Log("Popup come: " + gameObject.name + " [Speed: " + moveYSpeed + "] [Scale Factor: " + scaleFactor + "]");
-    //}
-
-    //private void OnDisable()
-    //{
-    //    Dev.Log("Popup back: " + gameObject.name + " [Speed: " + moveYSpeed + "] [Scale Factor: " + scaleFactor + "]");
-    //}
-
-    public void OnObjectSpawn()
+    public void OnObjectSpawn(IObjectPooler newPooler)
     {
+        this.pooler = newPooler;
         // prevent former spawned text obscuring later spawned text
         //_textMesh.sortingOrder = ++_sortingOrder;
         _disappearTimer = disappearTime;
@@ -126,7 +116,7 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
         }
     }
 
-    //TODO anything required to reset this Pooled Object for use again should be done here
+    //anything required to reset this Pooled Object for use again should be done here
     private void Complete()
     {
         pooler.ReturnToPool(gameObject);
