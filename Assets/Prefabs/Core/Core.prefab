@@ -125,11 +125,11 @@ MonoBehaviour:
     type: 3}
   popupPooler: {fileID: 836840349069231104}
   popupPoolerSize: 20
-  popupDisappearStyle: 0
+  popupDisappearStyle: 2
   popupColorDefault: {r: 0, g: 0, b: 0, a: 0}
-  popupDirectionDefault: {x: 0, y: 0, z: 0}
-  popupMoveYSpeedDefault: 0
-  popupScaleFactorDefault: 0
+  popupDirectionDefault: {x: 0, y: 1, z: 0}
+  popupMoveYSpeedDefault: 8
+  popupScaleFactorDefault: 0.1
   popupMoveYSpeedSmall: 0
   popupScaleFactorSmall: 0
 --- !u!114 &836840349069231104

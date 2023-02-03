@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5312325288922627711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb6612a5d8527d48b9a165f95ff3353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooler: {fileID: 0}
   disappearTime: 1
   disappearSpeed: 20
   _textMesh: {fileID: 8045479779283885375}
@@ -218,7 +217,7 @@ MonoBehaviour:
   m_fontSizeMin: 2
   m_fontSizeMax: 20
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
