@@ -10,6 +10,8 @@ public class Explosive : MonoBehaviour
     public float duration = 3f;
     [Tooltip("Radius within which bodies are affected.")]
     public float radius = 5f;
+    [Tooltip("The VFX system to configure on activation.")]
+    public GameObject vfxSystem;
 
     public bool isActive { get; private set; } = false;
     public float elapsed { get; private set; } = float.PositiveInfinity;
@@ -36,6 +38,7 @@ public class Explosive : MonoBehaviour
         if (isActive)
             return;
 
+        isActive = true;
         elapsed = 0;
 
         targetObjects.Clear();
@@ -50,7 +53,19 @@ public class Explosive : MonoBehaviour
             }
         }
 
-        isActive = true;
+        if (vfxSystem != null)
+        {
+            ParticleSystem ps = vfxSystem.GetComponent<ParticleSystem>();
+
+            ParticleSystem.MainModule main = ps.main;
+            main.duration = duration;
+            main.startSpeed = 2 * radius * Mathf.Sign(force);
+
+            ParticleSystem.ShapeModule shape = ps.shape;
+            shape.radius = radius;
+
+            ps.Play();
+        }
     }
 
     void FixedUpdate()
