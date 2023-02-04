@@ -12,6 +12,8 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
 
     [SerializeField]
     private Renderer assignedRenderer;
+    [SerializeField]
+    private Outline outlineRenderer;
 
     [SerializeField]
     private AudioClip AC_OnHit;
@@ -21,6 +23,21 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
 
     [SerializeField]
     private List<Enum_SpellComponents_Effects> _listSpellComponents = new List<Enum_SpellComponents_Effects>();
+
+    void SetRendererColor(Color color, string name = null)
+    {
+        if (assignedRenderer)
+        {
+            if (name != null)
+                assignedRenderer.material.SetColor(name, Color.red);
+            else
+                assignedRenderer.material.color = color;
+        }
+        if (outlineRenderer)
+        {
+            outlineRenderer.OutlineColor = color;
+        }
+    }
 
     void Start()
     {
@@ -33,7 +50,7 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
         if (other.gameObject.TryGetComponent<IDamageDealer>(out IDamageDealer dealer))
         {
             ReceiveDamage(dealer);
-            assignedRenderer.material.SetColor("_BaseColor", Color.red);
+            SetRendererColor(Color.red, "_BaseColor");
             //Dev.Log("[ShootingTarget.cs] OnCollisionEnter > " + dealer.GetDamageType());            
         }
 //        Dev.Log(other.gameObject.name);
@@ -43,14 +60,14 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
     {
         if (other.gameObject.TryGetComponent<IDamageDealer>(out IDamageDealer dealer))
         {
-            assignedRenderer.material.SetColor("_BaseColor", Color.yellow);        
+            SetRendererColor(Color.yellow, "_BaseColor");
         }
     }
 
     private void OnCollisionExit(Collision other)
     {
-        assignedRenderer.material.SetColor("_BaseColor", Color.white);
-        assignedRenderer.material.color = Core.Ins.UIEffectsManager.GetColorForElement(_currentElement);
+        SetRendererColor(Color.white, "_BaseColor");
+        SetRendererColor(Core.Ins.UIEffectsManager.GetColorForElement(_currentElement));
         //Dev.Log("sword on collision exit");
     }
 
@@ -105,7 +122,7 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
     public void ChangeElemental(Enum_Elements newElement)
     {
         _currentElement = newElement;
-        assignedRenderer.material.color = Core.Ins.UIEffectsManager.GetColorForElement(_currentElement);
+        SetRendererColor(Core.Ins.UIEffectsManager.GetColorForElement(_currentElement));
     }
 
     [ContextMenu("Debug_Receive Damage 10 Electro")]
