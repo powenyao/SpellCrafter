@@ -5,21 +5,38 @@ using UnityEngine.InputSystem;
 
 public class ViewController : MonoBehaviour
 {
+    [Header("Look")]
+
     [SerializeField]
     InputActionReference lookAction;
-
     [SerializeField]
     float hSensitivity = 0.2f;
     [SerializeField]
     float vSensitivity = -0.2f;
-
     [SerializeField]
     GameObject actuators;
+
+    [Header("Move (X Axis)")]
+    
+    [SerializeField]
+    InputActionReference moveAction;
+    [SerializeField]
+    float moveSpeed = 3f;
+    [SerializeField]
+    Transform leftBound;
+    [SerializeField]
+    Transform rightBound;
+
+    private float leftBoundX;
+    private float rightBoundX;
 
     void OnEnable()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        leftBoundX = leftBound ? leftBound.position.x : transform.position.x;
+        rightBoundX = rightBound ? rightBound.position.x : transform.position.x;
     }
 
     void OnDisable()
@@ -46,5 +63,14 @@ public class ViewController : MonoBehaviour
         // For vertical looking, only rotate the camera and arms (i.e. the actuators)
         float vTurn = lookDelta.y * vSensitivity;
         actuators.transform.Rotate(vTurn, 0, 0);
+
+        // Move horizontally
+        float moveDelta = moveAction.action.ReadValue<float>();
+        if (moveDelta == 0)
+            return;
+        float moveOffset = moveDelta * moveSpeed * Time.deltaTime;
+        float curX = transform.position.x;
+        float newX = Mathf.Clamp(curX + moveOffset, leftBoundX, rightBoundX);
+        transform.position = transform.position + new Vector3(newX - curX, 0, 0);
     }
 }

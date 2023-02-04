@@ -661,6 +661,11 @@ MonoBehaviour:
   hSensitivity: 0.2
   vSensitivity: -0.2
   actuators: {fileID: 1216038024868473944}
+  moveAction: {fileID: -7140920307093337045, guid: 67b77ac9ca65e75488c6b3478579c1f8,
+    type: 3}
+  moveSpeed: 4
+  leftBound: {fileID: 0}
+  rightBound: {fileID: 0}
 --- !u!114 &1216038025125847850
 MonoBehaviour:
   m_ObjectHideFlags: 0
