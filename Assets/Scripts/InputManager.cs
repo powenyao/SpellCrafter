@@ -12,6 +12,9 @@ public class InputManager : MonoBehaviour
     public LauncherController launcherController;
     public GameObject craftingUI;
 
+    [Header("Debug")]
+    public bool bypassViewController = false;
+
     private bool craftingMode = false;
 
     private void Awake()
@@ -39,7 +42,7 @@ public class InputManager : MonoBehaviour
 
     private void UpdateActiveControls()
     {
-        viewController.enabled = !craftingMode;
+        viewController.enabled = !craftingMode && !bypassViewController;
         launcherController.enabled = !craftingMode;
         craftingUI.SetActive(craftingMode);
     }
