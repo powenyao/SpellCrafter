@@ -27,6 +27,9 @@ public class Subservice_Sorcery : XrosSubservice
     private GameObject PF_Basic;
 
     [SerializeField]
+    private GameObject PF_Cylinder;
+    
+    [SerializeField]
     private GameObject PF_Horizontal;
 
     [SerializeField]
@@ -63,6 +66,7 @@ public class Subservice_Sorcery : XrosSubservice
     {
         //Setup Spells
         _spellsList.Add(Enum_SpellShapes.Sphere, PF_Basic);
+        _spellsList.Add(Enum_SpellShapes.Cylinder, PF_Cylinder);
         _spellsList.Add(Enum_SpellShapes.Horizontal, PF_Horizontal);
         _spellsList.Add(Enum_SpellShapes.Cross, PF_Cross);
         _spellsList.Add(Enum_SpellShapes.Wall, PF_Wall);
@@ -190,7 +194,7 @@ public class Subservice_Sorcery : XrosSubservice
             return go;
         }
 
-        Dev.LogWarning("[Subservice_Sorcery.cs] GetSpell > Cannot find spell of shape " + shape.ToString());
+         Dev.LogWarning("[Subservice_Sorcery.cs] GetSpell > Cannot find spell of shape " + shape.ToString());
         return null;
     }
 

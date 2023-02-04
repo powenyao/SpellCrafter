@@ -143,6 +143,7 @@ public class SpellComposition
 
     public void MergeComposition(SpellComposition newComposition)
     {
+        Dev.Log("[SpellComposition.cs] MergeComposition");
         throw new NotImplementedException();
     }
 }

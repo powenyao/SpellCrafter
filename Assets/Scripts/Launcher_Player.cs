@@ -9,7 +9,7 @@ public class Launcher_Player : LauncherBase
     {
         base.Setup();
         _launcherIdentifier = "Player";
-        sorcery.PrepSpellWithComposition(_launcherIdentifier, new SpellComposition());
+        sorcery.PrepSpellWithComposition(_launcherIdentifier, new SpellComposition(), true);
     }
     
     [ContextMenu("Compose Spell With Widen")]

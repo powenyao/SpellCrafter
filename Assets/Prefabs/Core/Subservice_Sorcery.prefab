@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PF_Basic: {fileID: 1506595041799249485, guid: 8dedc875da67a1d46a6d12c6ef0ad68a,
     type: 3}
+  PF_Cylinder: {fileID: 9023351753294865478, guid: 755b0e2aa55f56346bb19b9ab4f5d9e2,
+    type: 3}
   PF_Horizontal: {fileID: 0}
   PF_Cross: {fileID: 0}
   PF_Wall: {fileID: 0}

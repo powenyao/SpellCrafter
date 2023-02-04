@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 369071767196829779}
   - component: {fileID: 6977717604941193384}
   - component: {fileID: 5375006345701581100}
+  - component: {fileID: 5473363593138743585}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -114,6 +115,51 @@ MonoBehaviour:
   assignedRenderer: {fileID: 369071767196829779}
   AC_OnHit: {fileID: 0}
   _currentElement: 0
+  _listSpellComponents: 
+--- !u!114 &5473363593138743585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152718958805461011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 2
+  outlineColor: {r: 1, g: 0.044025064, b: 0.044025064, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 1
+  bakeKeys:
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  bakeValues:
+  - data:
+    - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
 --- !u!1001 &5086707468362770933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -189,7 +235,7 @@ PrefabInstance:
     - target: {fileID: 2731678503296945821, guid: 087a64366f1f3174d97cd6f9541aee34,
         type: 3}
       propertyPath: m_Name
-      value: PF_Target_Cube
+      value: PF_Target_Cube Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2731678504180746318, guid: 087a64366f1f3174d97cd6f9541aee34,
         type: 3}
