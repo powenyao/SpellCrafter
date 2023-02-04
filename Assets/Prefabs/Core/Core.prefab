@@ -121,15 +121,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultPopupPrefab: {fileID: 6284035934781621350, guid: 82b42460953f49449b8201398f342f18,
     type: 3}
-  defaultClosePopupPrefab: {fileID: 6284035934781621350, guid: 82b42460953f49449b8201398f342f18,
+  smallPopupPrefab: {fileID: 6083507458227961752, guid: 42a7b3fcb2941b746bc0962b1a2a3f87,
+    type: 3}
+  largePopupPrefab: {fileID: 7617783472766518726, guid: de1a92d344f12194e932cc5d19ed4bcd,
     type: 3}
   popupPooler: {fileID: 836840349069231104}
   popupPoolerSize: 20
-  popupDisappearStyle: 2
-  popupColorDefault: {r: 0, g: 0, b: 0, a: 0}
-  popupDirectionDefault: {x: 0, y: 1, z: 0}
-  popupMoveYSpeedDefault: 8
-  popupScaleFactorDefault: 0.1
+  usePrefabSetting: 1
+  popupColor: {r: 1, g: 1, b: 1, a: 0}
+  popupScaleFactor: 3
+  hasPopupAppearStage: 1
+  popupAppear_Time: 0.3
+  popupAppear_Direction: {x: 0, y: 1, z: 0}
+  popupAppear_MoveSpeed: 5
+  popupAppear_FadeIn: 1
+  popupAppear_Expand: 1
+  popupAppear_ExpandSpeed: 1
+  hasPopupStayStage: 1
+  popupStay_Time: 0.3
+  popupStay_Expand: 1
+  popupStay_ExpandSpeed: 1
+  hasPopupDisappearStage: 1
+  popupDisappear_Time: 0.3
+  popupDisappear_Direction: {x: 0, y: -1, z: 0}
+  popupDisappear_MoveSpeed: 1
+  popupDisappear_FadeOut: 1
+  popupDisappear_Shrink: 1
+  popupDisappear_ShrinkSpeed: 1
   popupMoveYSpeedSmall: 0
   popupScaleFactorSmall: 0
 --- !u!114 &836840349069231104

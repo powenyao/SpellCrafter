@@ -114,9 +114,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb6612a5d8527d48b9a165f95ff3353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disappearTime: 1
-  disappearSpeed: 20
   _textMesh: {fileID: 8045479779283885375}
+  _textColor: {r: 1, g: 1, b: 1, a: 1}
+  scaleFactor: 3
+  hasAppearStage: 1
+  appearTime: 0.3
+  appearDirection: {x: 0, y: 1, z: 0}
+  appearMoveSpeed: 5
+  appearFadeIn: 1
+  appearExpand: 1
+  appearExpandSpeed: 1
+  hasStayStage: 1
+  stayTime: 0.3
+  stayExpand: 1
+  stayExpandSpeed: 1
+  hasDisappearStage: 1
+  disappearTime: 0.3
+  disappearDirection: {x: 0, y: -1, z: 0}
+  disappearMoveSpeed: 1
+  disappearFadeOut: 1
+  disappearShrink: 1
+  disappearShrinkSpeed: 1
 --- !u!1 &8679130630312965109
 GameObject:
   m_ObjectHideFlags: 0

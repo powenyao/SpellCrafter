@@ -32,17 +32,49 @@ public class Controller_UIEffects : MonoBehaviour
     private GameObject defaultPopupPrefab;
 
     [SerializeField]
-    private GameObject defaultClosePopupPrefab;
+    private GameObject smallPopupPrefab;
+
+    [SerializeField]
+    private GameObject largePopupPrefab;
 
     public ObjectPooler popupPooler;
     public int popupPoolerSize = 20;
     private bool _hasCreatedPool = false;
 
-    public Enum_PopupDisappearStyle popupDisappearStyle;
-    public Color popupColorDefault;
-    public Vector3 popupDirectionDefault;
-    public float popupMoveYSpeedDefault;
-    public float popupScaleFactorDefault;
+    //public Enum_PopupDisappearStyle popupDisappearStyle;
+    //public Color popupColorDefault;
+    //public Vector3 popupDirectionDefault;
+    //public float popupMoveSpeedDefault;
+    //public float popupScaleFactorDefault;
+
+    public bool usePrefabSetting; //If true, use the setting from the popup prefab; otherwise use the following settings
+
+    public Color popupColor;
+    public float popupScaleFactor;
+
+    //Settings for the appearing stage
+    public bool hasPopupAppearStage;
+    public float popupAppear_Time;
+    public Vector3 popupAppear_Direction;
+    public float popupAppear_MoveSpeed;
+    public bool popupAppear_FadeIn;
+    public bool popupAppear_Expand;
+    public float popupAppear_ExpandSpeed;
+
+    //Settings for the staying stage
+    public bool hasPopupStayStage;
+    public float popupStay_Time;
+    public bool popupStay_Expand;
+    public float popupStay_ExpandSpeed;
+
+    //Settings for the disappearing stage
+    public bool hasPopupDisappearStage;
+    public float popupDisappear_Time;
+    public Vector3 popupDisappear_Direction;
+    public float popupDisappear_MoveSpeed;
+    public bool popupDisappear_FadeOut;
+    public bool popupDisappear_Shrink;
+    public float popupDisappear_ShrinkSpeed;
 
     [HideInInspector]
     public float popupMoveYSpeedSmall;
@@ -106,15 +138,15 @@ public class Controller_UIEffects : MonoBehaviour
 
     #region Popup
 
-    public void RequestSmallPopup(MonoBehaviour mb, string content, Color color = default)
-    {
-        this.RequestPopUp(mb.transform, content, color, defaultClosePopupPrefab);
-    }
+    //public void RequestSmallPopup(MonoBehaviour mb, string content, Color color = default)
+    //{
+    //    this.RequestPopUp(mb.transform, content, color, defaultClosePopupPrefab);
+    //}
 
-    public void RequestSmallPopUp(Transform parent, string content, Color color = default)
-    {
-        this.RequestPopUp(parent, content, color, defaultClosePopupPrefab);
-    }
+    //public void RequestSmallPopUp(Transform parent, string content, Color color = default)
+    //{
+    //    this.RequestPopUp(parent, content, color, defaultClosePopupPrefab);
+    //}
 
     //public void RequestPopUp(Transform parent, string content, Color color = default, GameObject popupPrefab = null)
     //{
@@ -151,17 +183,16 @@ public class Controller_UIEffects : MonoBehaviour
     //    float popupScaleFactor = (popupPrefab == defaultPopupPrefab) ? 
     //        popupScaleFactorDefault : popupScaleFactorSmall;
     //    float speed = (popupPrefab == defaultPopupPrefab) ?
-    //        popupMoveYSpeedDefault : popupMoveYSpeedSmall;
+    //        popupMoveSpeedDefault : popupMoveYSpeedSmall;
     //    uiFloatingText.Setup(content, color, parent.gameObject, Vector3.up, speed, popupScaleFactor, Enum_PopupDisappearStyle.FadeOut);
     //    uiFloatingText.pooler = popupPooler;
     //    popupGo.SetActive(true);
     //}
 
-    public void RequestPopUp(Transform parent, string content, Color color = default, GameObject popupPrefab = null,
-        bool useDefaultPopupSetting = false, Enum_PopupDisappearStyle disappearStyle = Enum_PopupDisappearStyle.None,
-        Vector3 moveDirection = default, float moveYSpeed = default, float scaleFactor = default)
+    public void RequestPopUp(Transform parent, string content, 
+        Color color = default, GameObject popupPrefab = null, Enum_PopupPrefabSize size = Enum_PopupPrefabSize.None)
     {
-        if (popupPrefab == null && defaultPopupPrefab == null)
+        if (defaultPopupPrefab == null)
         {
             Dev.LogWarning(
                 "[Controller_UIEffects.cs] RequestPopup > No default popup prefab assigned in Core.Ins.UIEFfects");
@@ -170,34 +201,39 @@ public class Controller_UIEffects : MonoBehaviour
 
         if (popupPrefab == null)
         {
-            popupPrefab = defaultPopupPrefab;
+            switch (size)
+            {
+                case Enum_PopupPrefabSize.Default:
+                {
+                    usePrefabSetting = true;
+                    popupPrefab = defaultPopupPrefab;
+                    break;
+                }
+                case Enum_PopupPrefabSize.Small:
+                {
+                    usePrefabSetting = true;
+                    popupPrefab = smallPopupPrefab;
+                    break;
+                }
+                case Enum_PopupPrefabSize.Large:
+                {
+                    usePrefabSetting = true;
+                    popupPrefab = largePopupPrefab;
+                    break;
+                }
+                case Enum_PopupPrefabSize.None:
+                {
+                    popupPrefab = defaultPopupPrefab;
+                    break;
+                }
+            }
         }
 
         if (color == default)
         {
             //Dev.Log("default: " + default);
             //color = new Color();
-            color = popupColorDefault;
-        }
-
-        if (moveDirection == default)
-        {
-            moveDirection = popupDirectionDefault;
-        }
-
-        if (moveYSpeed == default)
-        {
-            moveYSpeed = popupMoveYSpeedDefault;
-        }
-
-        if (scaleFactor == default)
-        {
-            scaleFactor = popupScaleFactorDefault;
-        }
-
-        if (disappearStyle == Enum_PopupDisappearStyle.None)
-        {
-            disappearStyle = popupDisappearStyle;
+            color = popupColor;
         }
 
         if (!_hasCreatedPool)
@@ -206,29 +242,118 @@ public class Controller_UIEffects : MonoBehaviour
             _hasCreatedPool = true;
         }
 
-        //TODO for Barry: With <T> you may be able to get it so that SpawnFromPool will return UI_FloatingText, allowing us to skip a step
-        //Ideally, we might just want something with total of 2 lines
-        //var uiFloatingText = popupPooler.SpawnFromPool<UI_FloatingText>(parent.position, Quaternion.identity);
-        //uiFloatingText.Setup(content, color);
-
         var popupGo = popupPooler.SpawnFromPool(parent.position, Quaternion.identity);
         var uiFloatingText = popupGo.GetComponent<UI_FloatingText>();
-        if (useDefaultPopupSetting)
+
+        if (usePrefabSetting)
         {
-//            uiFloatingText.Setup(content, Color.white, parent.gameObject, Vector3.up, 10f, 0.1f, Enum_PopupDisappearStyle.FadeOut);
-            uiFloatingText.Setup(content, Color.white, this.gameObject, Vector3.up, popupMoveYSpeedDefault,
-                popupScaleFactorDefault, Enum_PopupDisappearStyle.FadeOut);
+            uiFloatingText.SetupBasicInfo(content, parent.gameObject, true, color);
+            uiFloatingText.SetupAppearInfo();
+            uiFloatingText.SetupStayInfo();
+            uiFloatingText.SetupDisappearInfo();
         }
         else
         {
-//            uiFloatingText.Setup(content, color, parent.gameObject, moveDirection, moveYSpeed, scaleFactor, disappearStyle);
-            uiFloatingText.Setup(content, color, this.gameObject, moveDirection, moveYSpeed, scaleFactor,
-                disappearStyle);
+            uiFloatingText.SetupBasicInfo(content, parent.gameObject, false, color, popupScaleFactor);
+            if (hasPopupAppearStage)
+            {
+                uiFloatingText.SetupAppearInfo(popupAppear_Time, popupAppear_Direction, popupAppear_MoveSpeed,
+                    popupAppear_FadeIn, popupAppear_Expand, popupAppear_ExpandSpeed);
+            }
+            if (hasPopupStayStage)
+            {
+                uiFloatingText.SetupStayInfo(popupStay_Time, popupStay_Expand, popupStay_ExpandSpeed);
+            }
+            if (hasPopupDisappearStage)
+            {
+                uiFloatingText.SetupDisappearInfo(popupDisappear_Time, popupDisappear_Direction, popupDisappear_MoveSpeed,
+                    popupDisappear_FadeOut, popupDisappear_Shrink, popupDisappear_ShrinkSpeed);
+            }
         }
-        
-        //uiFloatingText.pooler = popupPooler;
+
         popupGo.SetActive(true);
     }
 
+//    public void RequestPopUp(Transform parent, string content, Color color = default, GameObject popupPrefab = null,
+//        bool useDefaultPopupSetting = false, Enum_PopupDisappearStyle disappearStyle = Enum_PopupDisappearStyle.None,
+//        Vector3 moveDirection = default, float moveYSpeed = default, float scaleFactor = default)
+//    {
+//        if (popupPrefab == null && defaultPopupPrefab == null)
+//        {
+//            Dev.LogWarning(
+//                "[Controller_UIEffects.cs] RequestPopup > No default popup prefab assigned in Core.Ins.UIEFfects");
+//            return;
+//        }
+
+//        if (popupPrefab == null)
+//        {
+//            popupPrefab = defaultPopupPrefab;
+//        }
+
+//        if (color == default)
+//        {
+//            //Dev.Log("default: " + default);
+//            //color = new Color();
+//            color = popupColorDefault;
+//        }
+
+//        if (moveDirection == default)
+//        {
+//            moveDirection = popupDirectionDefault;
+//        }
+
+//        if (moveYSpeed == default)
+//        {
+//            moveYSpeed = popupMoveSpeedDefault;
+//        }
+
+//        if (scaleFactor == default)
+//        {
+//            scaleFactor = popupScaleFactorDefault;
+//        }
+
+//        if (disappearStyle == Enum_PopupDisappearStyle.None)
+//        {
+//            disappearStyle = popupDisappearStyle;
+//        }
+
+//        if (!_hasCreatedPool)
+//        {
+//            popupPooler.Create(popupPrefab, popupPoolerSize);
+//            _hasCreatedPool = true;
+//        }
+
+//        //TODO for Barry: With <T> you may be able to get it so that SpawnFromPool will return UI_FloatingText, allowing us to skip a step
+//        //Ideally, we might just want something with total of 2 lines
+//        //var uiFloatingText = popupPooler.SpawnFromPool<UI_FloatingText>(parent.position, Quaternion.identity);
+//        //uiFloatingText.Setup(content, color);
+
+//        var popupGo = popupPooler.SpawnFromPool(parent.position, Quaternion.identity);
+//        var uiFloatingText = popupGo.GetComponent<UI_FloatingText>();
+//        if (useDefaultPopupSetting)
+//        {
+////            uiFloatingText.Setup(content, Color.white, parent.gameObject, Vector3.up, 10f, 0.1f, Enum_PopupDisappearStyle.FadeOut);
+//            uiFloatingText.Setup(content, Color.white, this.gameObject, Vector3.up, popupMoveSpeedDefault,
+//                popupScaleFactorDefault, Enum_PopupDisappearStyle.FadeOut);
+//        }
+//        else
+//        {
+////            uiFloatingText.Setup(content, color, parent.gameObject, moveDirection, moveYSpeed, scaleFactor, disappearStyle);
+//            uiFloatingText.Setup(content, color, this.gameObject, moveDirection, moveYSpeed, scaleFactor,
+//                disappearStyle);
+//        }
+        
+//        //uiFloatingText.pooler = popupPooler;
+//        popupGo.SetActive(true);
+//    }
+
     #endregion Popup
+}
+
+public enum Enum_PopupPrefabSize
+{
+    Default,
+    Small,
+    Large,
+    None
 }
