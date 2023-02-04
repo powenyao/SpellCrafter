@@ -36,6 +36,8 @@ public class SpellComposition
         _shape = Enum_SpellShapes.Sphere;
         _element = Enum_Elements.GrayNormal;
         // effectsList = new List<Enum_SpellEffects>();
+        _isElementReady = true;
+        _isShapeReady = true;
     }
 
     public SpellComposition(Enum_SpellShapes newShape, Enum_Elements newElement)
@@ -73,6 +75,16 @@ public class SpellComposition
         return _isShapeReady && _isElementReady;
     }
 
+    public bool IsShapeReady()
+    {
+        return _isShapeReady;
+    }
+
+    public bool IsElementReady()
+    {
+        return _isElementReady;
+    }
+
     public void AddSpellComponent(Enum_SpellComponentCategories category, string component)
     {
         switch(category)
@@ -90,6 +102,7 @@ public class SpellComposition
                 {
                     if (Enum.IsDefined(typeof(Enum_SpellComponents_Effects), effects))
                     {
+//                        Dev.Log("[SpellComponent.cs] AddSpellComponent > " + effects + " added" );
                         _listSpellComponentEffects.Add(effects);    
                     }
                     else
@@ -114,5 +127,20 @@ public class SpellComposition
     public List<Enum_SpellComponents_Effects> GetEffects()
     {
         return _listSpellComponentEffects;
+    }
+
+    public void Clear()
+    {
+        //this._isShapeReady = false;
+        //this._isElementReady = false;
+        _shape = Enum_SpellShapes.Sphere;
+        _element = Enum_Elements.GrayNormal;
+
+        _listSpellComponentEffects.Clear();
+    }
+
+    public void MergeComposition(SpellComposition newComposition)
+    {
+        throw new NotImplementedException();
     }
 }

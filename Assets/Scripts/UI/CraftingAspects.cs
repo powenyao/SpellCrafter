@@ -15,15 +15,25 @@ static class CraftingAspects
     {
         {
             "Elements",
-            new string[] { "Fire", "Water", "Wind", "Electric"}
+            //new string[] { "Fire", "Water", "Wind", "Electric"}
+            new string[] {
+                Enum_Elements.GrayNormal.ToString(),
+                Enum_Elements.OrangePyro.ToString(),
+                Enum_Elements.GreenDendro.ToString(),
+                Enum_Elements.YellowGeo.ToString(),
+                Enum_Elements.TealAnemo.ToString(), 
+                Enum_Elements.PurpleElectro.ToString(),
+                Enum_Elements.BlueHydro.ToString()}
         },
         {
             "Forms",
-            new string[] { "Ball", "Rod" }
+            //new string[] { "Ball", "Rod"}
+            new string[] { Enum_SpellShapes.Sphere.ToString(), Enum_SpellShapes.Cylinder.ToString() }
         },
         {
             "Modifiers",
-            new string[] { "Concentrate", "Widen", "Pull" }
+            //new string[] { "Concentrate", "Widen", "Pull",}
+            new string[] { Enum_SpellComponents_Effects.Concentrate.ToString(), Enum_SpellComponents_Effects.Widen.ToString(), Enum_SpellComponents_Effects.Pull.ToString() }
         }
     };
 

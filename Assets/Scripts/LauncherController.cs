@@ -9,7 +9,7 @@ public class LauncherController : MonoBehaviour
     InputActionReference castAction;
 
     [SerializeField]
-    LauncherBase launcher;
+    LauncherBase _launcher;
 
     void OnEnable()
     {
@@ -23,11 +23,11 @@ public class LauncherController : MonoBehaviour
 
     private void CastPerformedHandler(InputAction.CallbackContext obj)
     {
-        Debug.Log("Attempting to launch!");
+        //Debug.Log("Attempting to launch!");
 
-        if (launcher != null)
+        if (_launcher != null)
         {
-            launcher.TryLaunch();
+            _launcher.TryLaunch();
         }
     }
 

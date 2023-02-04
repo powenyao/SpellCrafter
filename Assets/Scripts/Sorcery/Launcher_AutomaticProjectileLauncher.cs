@@ -65,7 +65,7 @@ public class Launcher_AutomaticProjectileLauncher : LauncherBase
             Enum_SpellComponents_Effects.Concentrate.ToString());
     }
 
-    [ContextMenu("ComposeSpellWithWiden")]
+    [ContextMenu("DebugGetComposedSpellWithWiden")]
     void DebugComposeSpellWithWiden()
     {
         composition = new SpellComposition(shape, element);
