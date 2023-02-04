@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public delegate void Delegate_NewSpellPreparation();
 public delegate void Delegate_NewSpellCast();
+//public delegate void Delegate_NewSpellPreparation(string launcher);
+//public delegate void Delegate_NewSpellCast(string launcher);
 
 public class Subservice_Sorcery : XrosSubservice
 {
@@ -16,6 +18,8 @@ public class Subservice_Sorcery : XrosSubservice
     private Dictionary<Enum_SpellShapes, Sprite> shapeSpriteDictionary = new Dictionary<Enum_SpellShapes, Sprite>();
     private Dictionary<Enum_Elements, Sprite> elementSpriteDictionary = new Dictionary<Enum_Elements, Sprite>();
 
+    private Dictionary<string, SpellComposition> _launcherList = new Dictionary<string, SpellComposition>();
+    
     //Use prefabs or Resources.Load? Started spells with prefabs, but require assignment
     //Used Resources.Load for element and shape sprites, but that is easy to break
     [SerializeField]
@@ -105,11 +109,23 @@ public class Subservice_Sorcery : XrosSubservice
     }
     #endregion Setup
 
-    public void PrepSpell(SpellComposition newComposition)
+    public void PrepSpell(string launcherName, SpellComposition newComposition)
     {
-        _currentComposition = newComposition;
+        
+        if (_launcherList[launcherName] != null)
+        {
+            var existingComposition = _launcherList[launcherName];
+            //TODO here we might want to handle modifying existing composition
+            
+            
+        }
+        else
+        {
+            _launcherList[launcherName] = newComposition;
+        }
     }
     
+    //TODO Powen: work toward deprecating this
     public GameObject GetSpell(Enum_SpellShapes shape, Enum_Elements element, Vector3 newPosition, Quaternion newRotation = default)
     {
         if (_spellsList.ContainsKey(shape))
@@ -119,6 +135,7 @@ public class Subservice_Sorcery : XrosSubservice
 //            Dev.Log("go name:  " + go.name);
             var projectile = go.GetComponent<SpellBase>();
             projectile.ChangeElement(element);
+            
             EVENT_NewSpellCast?.Invoke();
             
             return go;            
@@ -128,6 +145,36 @@ public class Subservice_Sorcery : XrosSubservice
         return null;
     }
 
+    
+    //Powen: Might want to rename to get formed spell. Might want to return spellbase instead
+    //SpellComposition is like a draft of spell.
+    //Spell Components make up a Spell Composition.
+    //This method will handle converting SpellComposition to actual GameObject/Spell that can damage things.
+    public GameObject GetSpell(SpellComposition composition, Vector3 newPosition, Quaternion newRotation = default)
+    {
+        
+        //var go =  this.GetSpell(composition.GetShape(), composition.GetElement(), newPosition, newRotation);
+
+        var shape = composition.GetShape();
+        var element = composition.GetElement();
+        if (_spellsList.ContainsKey(shape))
+        {
+            var pf = _spellsList[shape];
+            var go = Instantiate(pf, newPosition, newRotation);
+//            Dev.Log("go name:  " + go.name);
+            var projectile = go.GetComponent<SpellBase>();
+            projectile.ChangeElement(element);
+            projectile.SetupComposition(composition);
+            
+            EVENT_NewSpellCast?.Invoke();
+            
+            return go;            
+        }
+
+        Dev.LogWarning("Cannot find spell of shape " + shape.ToString());
+        return null;
+    }
+    
     #region combo prep spell
 
     private bool IsShapeReady = false;
@@ -228,4 +275,5 @@ public class Subservice_Sorcery : XrosSubservice
         Dev.LogWarning("No sprite in dictionary for element " + _preparedShape);
         return shapeSpriteDictionary[Enum_SpellShapes.Sphere];
     }
+
 }
