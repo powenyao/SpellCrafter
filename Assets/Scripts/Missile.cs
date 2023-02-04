@@ -91,12 +91,22 @@ public class Missile : MonoBehaviour, IDamageDealer, IPooledObject
         return damageValue;
     }
 
-    public Enum_Elements GetDamageType()
+    public Enum_Elements GetDamageElement()
     {
         return elementType;
     }
 
-    
+    public void DamageTakenByReceiver(float actualDamageValueUtilized)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool CanOverkill()
+    {
+        return true;
+    }
+
+
     public void OnObjectSpawn(IObjectPooler newPooler)
     {
         this.pooler = newPooler;

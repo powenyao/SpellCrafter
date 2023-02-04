@@ -46,12 +46,10 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
     
     void OnCollisionEnter(Collision other)
     {
-        //Dev.Log("[ShootingTarget.cs] OnCollisionEnter");
         if (other.gameObject.TryGetComponent<IDamageDealer>(out IDamageDealer dealer))
         {
             ReceiveDamage(dealer);
-            SetRendererColor(Color.red, "_BaseColor");
-            //Dev.Log("[ShootingTarget.cs] OnCollisionEnter > " + dealer.GetDamageType());            
+            //Dev.Log("[ShootingTarget.cs] OnCollisionEnter > " + dealer.GetDamageElement());            
         }
 //        Dev.Log(other.gameObject.name);
     }
@@ -90,32 +88,74 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
     public void ReceiveDamage(IDamageDealer damageDealer)
     {
         var damageVal = (int)damageDealer.GetDamageValue();
-        var damageType = damageDealer.GetDamageType();
+        
+        var damageType = damageDealer.GetDamageElement();
         //Dev.Log("damageVal " + damageVal);
-        // Dev.Log("Damage Value: " + damageVal.ToString() + " Damage Type: " + dealer.GetDamageType());
+        // Dev.Log("Damage Value: " + damageVal.ToString() + " Damage Type: " + dealer.GetDamageElement());
 
         if (damageVal > 0)
         {
+            var effectiveDamageVal = damageVal;
             if (damageType == _currentElement && damageType != Enum_Elements.GrayNormal)
             {
-                damageVal = damageVal * ElementalDamageMultiplier;
+                effectiveDamageVal = damageVal * ElementalDamageMultiplier;
             }
             
+            //Check to see if effectiveDamage will kill the player
+            var overkillValue = hp - effectiveDamageVal;
+            
+            
+            if (overkillValue > 0) //not overkill
+            {
+                //Powen: Why you do this to me Vinay why
+                // base damage 100
+                // elemental bonus 1.5
+                // effective damage 150 = 100 * 1.5
+                // hp 125
+                // overkill damage 25
+                // actual base damage dealt
+                // overkilldamage / elemental bonus
+                // 25/1.5 = 16.666, round down
+                // 100-16 = 84
+                // 84*1.5=126
+
+                if (damageDealer.CanOverkill())
+                {
+                    damageDealer.DamageTakenByReceiver(effectiveDamageVal);
+                    hp -= effectiveDamageVal;
+                }
+                else
+                {
+                    var actualDamageValueUtilized = damageVal - overkillValue * damageVal / effectiveDamageVal; 
+                    damageDealer.DamageTakenByReceiver(actualDamageValueUtilized);
+
+
+                    hp = 0;
+                }
+                
+                
+                
+            }
+            else
+            {
+                Destruct();
+            }
 
             //Visuals
-            var color = Core.Ins.UIEffectsManager.GetColorForElement(damageDealer.GetDamageType());
-            Core.Ins.UIEffectsManager.RequestPopUp(this.transform, damageVal.ToString(), color);
+            SetRendererColor(Color.red, "_BaseColor");
+
+            var color = Core.Ins.UIEffectsManager.GetColorForElement(damageDealer.GetDamageElement());
+            Core.Ins.UIEffectsManager.RequestPopUp(this.transform, effectiveDamageVal.ToString(), color);
 
             //Sound
             //Core.Ins.AudioManager.PlayAudio(AC_OnHit, ENUM_Audio_Type.Sfx);
 
-            hp -= damageVal;
-
-            if (hp <= 0)
-            {
-                Destroy(this.gameObject);
-            }
         }
+    }
+
+    public void Destruct()
+    {
+        Destroy(this.gameObject);
     }
     
 

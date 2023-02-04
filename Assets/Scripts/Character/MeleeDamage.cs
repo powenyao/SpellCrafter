@@ -19,8 +19,18 @@ public class MeleeDamage : MonoBehaviour, IDamageDealer
         return DamageValue;
     }
 
-    public Enum_Elements GetDamageType()
+    public Enum_Elements GetDamageElement()
     {
         return element;
+    }
+
+    public void DamageTakenByReceiver(float actualDamageValueUtilized)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool CanOverkill()
+    {
+        return true;
     }
 }

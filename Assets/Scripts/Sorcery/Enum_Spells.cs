@@ -76,6 +76,7 @@ public enum Enum_SpellComponents_Effects
     Concentrate,
     SpeedUp,
     AoE,
+    PassThrough,
 }
 
 public enum Enum_SpellComponents_Tracking

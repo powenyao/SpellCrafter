@@ -115,7 +115,20 @@ public class projectile_spell_shootable : SpellBase
         
         if (collision.gameObject.TryGetComponent<IDamageReceiver>(out IDamageReceiver receiver))
         {
-            Complete();
+            if (_composition.GetEffects().Contains(Enum_SpellComponents_Effects.PassThrough))
+            {
+                
+            }
+            else
+            {
+                Complete();    
+            }
+        }
+        else
+        {
+            //Dev.Log("[Projectile_spell_shootable] OnCollisionEnter > Didn't hit damageReceiver, hit " + Dev.GetPath(collision.gameObject.transform));
+            
+            //Complete();
         }
 
         //Powen: Below is Barry's Code. I don't think a tracking spell should keep going even if it already hit something else until it hit the target it wants. 

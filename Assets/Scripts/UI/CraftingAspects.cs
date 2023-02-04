@@ -23,24 +23,27 @@ public static class CraftingAspects
         {
             AspectName.Elements,
             //new string[] { "Fire", "Water", "Wind", "Electric"}
-            new string[] {
-                Enum_Elements.GrayNormal.ToString(),
-                Enum_Elements.OrangePyro.ToString(),
-                Enum_Elements.GreenDendro.ToString(),
-                Enum_Elements.YellowGeo.ToString(),
-                Enum_Elements.TealAnemo.ToString(),
-                Enum_Elements.PurpleElectro.ToString(),
-                Enum_Elements.BlueHydro.ToString()}
+            // new string[] {
+            //     Enum_Elements.GrayNormal.ToString(),
+            //     Enum_Elements.OrangePyro.ToString(),
+            //     Enum_Elements.GreenDendro.ToString(),
+            //     Enum_Elements.YellowGeo.ToString(),
+            //     Enum_Elements.TealAnemo.ToString(),
+            //     Enum_Elements.PurpleElectro.ToString(),
+            //     Enum_Elements.BlueHydro.ToString()}
+            Enum.GetNames(typeof(Enum_Elements))
         },
         {
             AspectName.Forms,
             //new string[] { "Ball", "Rod"}
-            new string[] { Enum_SpellShapes.Sphere.ToString(), Enum_SpellShapes.Cylinder.ToString() }
+            //new string[] { Enum_SpellShapes.Sphere.ToString(), Enum_SpellShapes.Cylinder.ToString() }
+            Enum.GetNames(typeof(Enum_SpellShapes))
         },
         {
             AspectName.Components,
             //new string[] { "Concentrate", "Widen", "Pull",}
-            new string[] { Enum_SpellComponents_Effects.Concentrate.ToString(), Enum_SpellComponents_Effects.Widen.ToString(), Enum_SpellComponents_Effects.Pull.ToString() }
+            //new string[] { Enum_SpellComponents_Effects.Concentrate.ToString(), Enum_SpellComponents_Effects.Widen.ToString(), Enum_SpellComponents_Effects.Pull.ToString() }
+            Enum.GetNames(typeof(Enum_SpellComponents_Effects))
         }
     };
 
