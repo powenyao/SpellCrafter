@@ -2,7 +2,7 @@
 
 public interface IPooledObject
 {
-        void OnObjectSpawn(IObjectPooler pooler);
+        void OnObjectSpawn(IObjectPooler newPooler);
 }
 
 public interface IObjectPooler
