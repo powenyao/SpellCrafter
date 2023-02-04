@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.WSA;
+//using UnityEngine.WSA;
 
 
 //https://docs.google.com/spreadsheets/d/1ecp5bPLOy_fXQO3aUuUc46Q6hXONMFKgxgODaQ4zC2k/edit#gid=1150781586
