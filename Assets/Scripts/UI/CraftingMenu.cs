@@ -14,6 +14,7 @@ public class CraftingMenu : MonoBehaviour
     private Dictionary<CraftingAspects.AspectName, AspectSelector> aspectSelectors;
     private TextMeshProUGUI summaryText;
 
+    private Subservice_Sorcery sorcery;
     void Awake()
     {
         aspectSelectors = new Dictionary<CraftingAspects.AspectName, AspectSelector>();
@@ -26,6 +27,10 @@ public class CraftingMenu : MonoBehaviour
         summaryText = finalView.GetComponent<TextMeshProUGUI>();
     }
 
+    void Start()
+    {
+        sorcery = (Subservice_Sorcery)Core.Ins.Subservices.GetSubservice(nameof(Subservice_Sorcery));
+    }
     void OnAspectsChangedHandler(AspectSelector selectorAffected)
     {
         selectionChanged = true;
@@ -60,8 +65,7 @@ public class CraftingMenu : MonoBehaviour
         {
             composition.AddSpellComponent(Enum_SpellComponentCategories.Effects, item);
         }
-
-        var sorcery = (Subservice_Sorcery)Core.Ins.Subservices.GetSubservice(nameof(Subservice_Sorcery));
+        
         sorcery.PrepSpellWithComposition("Player", composition, replaceIfExists: true);
 
         Debug.Log("New spell prepped!");
