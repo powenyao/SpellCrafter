@@ -27,7 +27,7 @@ public class EnemyStats : CharacterStats
         Dev.Log("Enemy Show Damage");
         if (damageVal > 0)
         {
-            Color color = Core.Ins.UIEffectsManager.GetColorForElement(dealer.GetDamageType());
+            Color color = Core.Ins.UIEffectsManager.GetColorForElement(dealer.GetDamageElement());
             Core.Ins.UIEffectsManager.RequestPopUp(this.transform, damageVal.ToString(), color);
         }
     }

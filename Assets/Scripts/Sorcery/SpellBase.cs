@@ -20,14 +20,38 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     
     protected bool isCompleted = false;
 
+    protected SpellComposition _composition;
+    
     public float GetDamageValue()
     {
         return damageValue;
     }
 
-    public Enum_Elements GetDamageType()
+    public Enum_Elements GetDamageElement()
     {
         return elementType;
+    }
+
+    public virtual void DamageTakenByReceiver(float actualDamageValueUtilized)
+    {
+        //Dev.Log("[SpellBase.cs] DamageTakenByReceiver ");
+        if (_composition.GetEffects().Contains(Enum_SpellComponents_Effects.PassThrough))
+        {
+            damageValue -= Mathf.CeilToInt(actualDamageValueUtilized);
+            if (damageValue <= 0)
+            {
+                damageValue = 0;
+                Complete();
+            }
+            
+            //Dev.Log("damageValue " + damageValue);
+        }
+    }
+
+    public virtual bool CanOverkill()
+    {
+        return _composition.GetEffects().Contains(Enum_SpellComponents_Effects.PassThrough);
+        //return true;
     }
 
     public void ChangeElement(Enum_Elements element)
@@ -56,7 +80,10 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
 
     public virtual void Complete()
     {
+        //TODO release payload
+        
         isCompleted = true;
+        //Dev.Log("isCompleted " + isCompleted);
     }
     
     public virtual void Process()
@@ -66,6 +93,8 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
 
     public void SetupComposition(SpellComposition composition)
     {
+        _composition = composition;
+        
         List<Enum_SpellComponents_Effects> listEffect = composition.GetEffects();
         foreach (var e in listEffect)
         {
@@ -76,16 +105,20 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
                 case Enum_SpellComponents_Effects.Pull:
                     break;
                 case Enum_SpellComponents_Effects.Widen:
-                    this.transform.localScale = this.transform.localScale * 2;
+                    this.transform.localScale *= SpellComponentReference.Widen_ScaleMultiplier;
                     break;
                 case Enum_SpellComponents_Effects.Concentrate:
+                    this.damageValue *= SpellComponentReference.Concentrate_DamageMultiplier;
                     break;
                 case Enum_SpellComponents_Effects.SpeedUp:
-                    moveSpeed = moveSpeed * 2f;
+                    moveSpeed *= SpellComponentReference.Speedup_Multiplier;
                     break;
                 case Enum_SpellComponents_Effects.AoE:
                     break;
+                case Enum_SpellComponents_Effects.PassThrough:
+                    break;
                 default:
+                    Dev.Log("[SpellBase] SetupComposition > " + e.ToString());
                     throw new ArgumentOutOfRangeException();
             }
         }

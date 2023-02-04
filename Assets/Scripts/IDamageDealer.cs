@@ -7,11 +7,15 @@
 public interface IDamageDealer
 {
     //We might want to add damage source and damage type in the future
-    //damage type e.g. fire, physical, ice
+    //damage element e.g. fire, physical, ice
     //damage source to indicate who or what dealt the damage
     float GetDamageValue();
 
-    Enum_Elements GetDamageType();
+    Enum_Elements GetDamageElement();
+
+
+    void DamageTakenByReceiver(float actualDamageValueUtilized);
+    bool CanOverkill();
 }
 
 public interface IDamageReceiver

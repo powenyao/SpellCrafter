@@ -31,6 +31,7 @@ public class CraftingMenu : MonoBehaviour
     {
         sorcery = (Subservice_Sorcery)Core.Ins.Subservices.GetSubservice(nameof(Subservice_Sorcery));
     }
+    
     void OnAspectsChangedHandler(AspectSelector selectorAffected)
     {
         selectionChanged = true;
@@ -53,6 +54,11 @@ public class CraftingMenu : MonoBehaviour
         if (!selectionChanged)
             return;
 
+        PrepSpellWithAspectValues();
+    }
+
+    void PrepSpellWithAspectValues()
+    {
         var elementSelector = aspectSelectors[CraftingAspects.AspectName.Elements];
         var shapeSelector = aspectSelectors[CraftingAspects.AspectName.Forms];
         var compSelector = aspectSelectors[CraftingAspects.AspectName.Components];
