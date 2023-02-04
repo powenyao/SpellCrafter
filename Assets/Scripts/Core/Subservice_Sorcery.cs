@@ -58,7 +58,7 @@ public class Subservice_Sorcery : XrosSubservice
     {
         SetupSpells();
         SetupSprites();
-        SetupDebug();
+        //SetupDebug();
     }
     
     void SetupSpells()

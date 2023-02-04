@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1705086993495559361}
   - component: {fileID: 1705086993495559360}
-  - component: {fileID: 1705086993495559366}
   m_Layer: 0
   m_Name: PF_Launcher
   m_TagString: Untagged
@@ -48,27 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac154b277bb5324cb8ce248b1deb7fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CastPopupText: Cast Firebolt
+  _launcherIdentifier: Default Auto Launcher
+  _castPopupText: Default Cast Firebolt
   shape: 0
   element: 1
   launchTransform: {fileID: 1705086993670469908}
   targetTransform: {fileID: 1705086993543061749}
   launchCooldown: 1
---- !u!114 &1705086993495559366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705086993495559362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30de64a290d11194fbda8c5dd649db3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _renderer: {fileID: 1705086994149478213}
-  _particleSystem: {fileID: 0}
-  _particleSystem2: {fileID: 0}
+  spellcomponentEffectsString: []
 --- !u!1 &1705086993543061748
 GameObject:
   m_ObjectHideFlags: 0

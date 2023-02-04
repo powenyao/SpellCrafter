@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     private SpellBaseVisualization _visualization;
     
     protected bool isCasted = false;
+    //track this variable
+    protected float _timeSinceCast = 0f;
+    
     protected bool isCompleted = false;
 
     public float GetDamageValue()
@@ -35,11 +39,13 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
 
     public virtual void Cast(GameObject target = null)
     {
+        _timeSinceCast = 0;
         isCasted = true;
     }
 
     public virtual void Cast(Transform targetTransform)
     {
+        _timeSinceCast = 0;
         isCasted = true;
     }
 
@@ -63,9 +69,24 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
         List<Enum_SpellComponents_Effects> listEffect = composition.GetEffects();
         foreach (var e in listEffect)
         {
-            if (e == Enum_SpellComponents_Effects.Widen)
+            switch(e)
             {
-                this.transform.localScale = this.transform.localScale * 2;
+                case Enum_SpellComponents_Effects.None:
+                    break;
+                case Enum_SpellComponents_Effects.Pull:
+                    break;
+                case Enum_SpellComponents_Effects.Widen:
+                    this.transform.localScale = this.transform.localScale * 2;
+                    break;
+                case Enum_SpellComponents_Effects.Concentrate:
+                    break;
+                case Enum_SpellComponents_Effects.SpeedUp:
+                    moveSpeed = moveSpeed * 2f;
+                    break;
+                case Enum_SpellComponents_Effects.AoE:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }
