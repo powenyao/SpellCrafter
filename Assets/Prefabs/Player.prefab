@@ -663,7 +663,7 @@ MonoBehaviour:
   actuators: {fileID: 1216038024868473944}
   moveAction: {fileID: -7140920307093337045, guid: 67b77ac9ca65e75488c6b3478579c1f8,
     type: 3}
-  moveSpeed: 4
+  moveSpeed: 5
   leftBound: {fileID: 0}
   rightBound: {fileID: 0}
 --- !u!114 &1216038025125847850
