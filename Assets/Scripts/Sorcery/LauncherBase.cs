@@ -71,4 +71,9 @@ public class LauncherBase : MonoBehaviour
     {
         composition = new SpellComposition(Enum_SpellShapes.Sphere, Enum_Elements.GrayNormal);
     }
+
+    public virtual void TryLaunch()
+    {
+
+    }
 }

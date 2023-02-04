@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     public InputActionReference toggleCraftingModeAction;
 
     public ViewController viewController;
+    public LauncherController launcherController;
     public GameObject craftingUI;
 
     private bool craftingMode = false;
@@ -21,7 +22,6 @@ public class InputManager : MonoBehaviour
     void OnEnable()
     {
         asset.Enable();
-        toggleCraftingModeAction.action.Enable();
     }
 
     void Start()
@@ -40,6 +40,7 @@ public class InputManager : MonoBehaviour
     private void UpdateActiveControls()
     {
         viewController.enabled = !craftingMode;
+        launcherController.enabled = !craftingMode;
         craftingUI.SetActive(craftingMode);
     }
 }
