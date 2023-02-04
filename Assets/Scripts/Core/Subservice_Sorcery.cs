@@ -198,9 +198,9 @@ public class Subservice_Sorcery : XrosSubservice
     #region prep spell
 
     //Todo should this be renamed as WithNewComposition and only deal with that?
-    public void PrepSpellWithComposition(string identifier, SpellComposition newComposition)
+    public void PrepSpellWithComposition(string identifier, SpellComposition newComposition, bool replaceIfExists = false)
     {
-        if (_launcherList.ContainsKey(identifier))
+        if (_launcherList.ContainsKey(identifier) && !replaceIfExists)
         {
             var existingComposition = _launcherList[identifier];
             
@@ -209,7 +209,7 @@ public class Subservice_Sorcery : XrosSubservice
         }
         else
         {
-            _launcherList.Add(identifier, newComposition);
+            _launcherList[identifier] = newComposition;
         }
     }
 

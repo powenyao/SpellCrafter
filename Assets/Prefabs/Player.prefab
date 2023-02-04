@@ -675,7 +675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   castAction: {fileID: -4843666192691451054, guid: 67b77ac9ca65e75488c6b3478579c1f8,
     type: 3}
-  launcher: {fileID: 1216038026719645765}
+  _launcher: {fileID: 0}
 --- !u!114 &488570331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +694,7 @@ MonoBehaviour:
   viewController: {fileID: 1216038026235516271}
   launcherController: {fileID: 1216038025125847850}
   craftingUI: {fileID: 1990848656}
+  bypassViewController: 0
 --- !u!1001 &525113225781238917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -769,18 +770,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 525113225781238917}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1216038026719645765 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1705086993495559360, guid: 0a9a32619ddb6654393f03ad9d333d78,
-    type: 3}
-  m_PrefabInstance: {fileID: 525113225781238917}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac154b277bb5324cb8ce248b1deb7fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1216038024794094728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -901,7 +890,7 @@ PrefabInstance:
     - target: {fileID: 3906949538730662891, guid: 1ddf8255eb796fe46b7c79753e291e7d,
         type: 3}
       propertyPath: aspectName
-      value: Modifiers
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ddf8255eb796fe46b7c79753e291e7d, type: 3}
@@ -1156,7 +1145,7 @@ PrefabInstance:
     - target: {fileID: 2641015552008311147, guid: 9a577ae8da270914fb1be7ad6a3f9f63,
         type: 3}
       propertyPath: aspectName
-      value: Forms
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a577ae8da270914fb1be7ad6a3f9f63, type: 3}

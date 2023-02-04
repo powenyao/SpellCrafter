@@ -44,6 +44,8 @@ public class SpellComposition
     {
         _shape = newShape;
         _element = newElement;
+        _isElementReady = true;
+        _isShapeReady = true;
     }
 
     #endregion constructors

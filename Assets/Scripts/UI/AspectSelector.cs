@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class AspectSelector : MonoBehaviour
 {
-    public string aspectName;
+    public CraftingAspects.AspectName aspectName;
     public GameObject choiceButtonTemplate;
 
     public GameObject header;
@@ -20,7 +20,7 @@ public class AspectSelector : MonoBehaviour
     {
         // Set panel header
         var headerText = header.GetComponent<TextMeshProUGUI>();
-        headerText.text = aspectName;
+        headerText.text = aspectName.ToString();
         
         // Instantiate panel options
         ToggleGroup toggleGroup = choicesPanel.GetComponent<ToggleGroup>();
