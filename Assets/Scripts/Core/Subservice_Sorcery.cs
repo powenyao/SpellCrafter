@@ -154,7 +154,8 @@ public class Subservice_Sorcery : XrosSubservice
             {
                 var spell = GetSpell(composition, newPosition, newRotation);
 
-                composition.Clear();
+                // Would like last selection to continue
+                // composition.Clear();
 
                 EVENT_NewSpellCast?.Invoke();
                 return spell;
