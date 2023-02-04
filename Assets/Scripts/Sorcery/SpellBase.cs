@@ -11,6 +11,8 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     // params about FORM
     [SerializeField] private Enum_Elements elementType;
 
+    protected List<Enum_SpellComponents_Effects> listEffect;
+
     [SerializeField]
     private SpellBaseVisualization _visualization;
     
@@ -66,7 +68,7 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
 
     public void SetupComposition(SpellComposition composition)
     {
-        List<Enum_SpellComponents_Effects> listEffect = composition.GetEffects();
+        listEffect = composition.GetEffects();
         foreach (var e in listEffect)
         {
             switch(e)

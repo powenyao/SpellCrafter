@@ -32,7 +32,6 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
         //Dev.Log("[ShootingTarget.cs] OnCollisionEnter");
         if (other.gameObject.TryGetComponent<IDamageDealer>(out IDamageDealer dealer))
         {
-            ReceiveDamage(dealer);
             assignedRenderer.material.SetColor("_BaseColor", Color.red);
             //Dev.Log("[ShootingTarget.cs] OnCollisionEnter > " + dealer.GetDamageType());            
         }

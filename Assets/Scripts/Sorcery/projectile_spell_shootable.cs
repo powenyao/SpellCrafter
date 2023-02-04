@@ -112,9 +112,24 @@ public class projectile_spell_shootable : SpellBase
         {
             return;
         }
-        
+
         if (collision.gameObject.TryGetComponent<IDamageReceiver>(out IDamageReceiver receiver))
         {
+            if (listEffect.Contains(Enum_SpellComponents_Effects.AoE))
+            {
+                var colliders = Physics.OverlapSphere(transform.position, 5f /* radius */);
+                foreach (Collider collider in colliders)
+                {
+                    if (collider.TryGetComponent<IDamageReceiver>(out IDamageReceiver receiverOther))
+                    {
+                        receiverOther.ReceiveDamage(this);
+                    }
+                }
+            }
+            else
+            {
+                receiver.ReceiveDamage(this);
+            }
             Complete();
         }
 
