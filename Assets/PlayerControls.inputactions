@@ -34,7 +34,7 @@
             "id": "571d3660-a69b-49e3-8101-45418f8ad1d9",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "ToggleCraftingMode",
                     "type": "Button",
                     "id": "1d59879a-61c1-4899-94b5-b5e1316047d8",
                     "expectedControlType": "Button",
@@ -47,11 +47,11 @@
                 {
                     "name": "",
                     "id": "639ae13a-f83e-4bdc-a915-2644e17e5c53",
-                    "path": "",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "ToggleCraftingMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

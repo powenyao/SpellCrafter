@@ -16,15 +16,22 @@ public class ViewController : MonoBehaviour
     [SerializeField]
     GameObject actuators;
 
+    void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void OnDisable()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.LogWarning("Do not move the mouse after clicking 'Play' to start facing the center.");
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        lookAction.action.Enable();
     }
 
     // Update is called once per frame
