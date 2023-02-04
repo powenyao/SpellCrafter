@@ -13,9 +13,7 @@ public class projectile_spell_shootable : SpellBase
 
     private Vector3 _shootForward;
 
-    //track this variable
-    private float _timeSinceCast = 0f;
-
+    
     //time before a spell expires
     [SerializeField]
     private float terminateTime = 5f;
@@ -51,8 +49,9 @@ public class projectile_spell_shootable : SpellBase
 
         _withoutTarget = _targetObj == null;
         _shootForward = transform.forward;
-        isCasted = true;
-        _timeSinceCast = 0;
+        
+        base.Cast(target);
+        
     }
 
     public override void Cast(Transform targetTransform)
@@ -60,6 +59,8 @@ public class projectile_spell_shootable : SpellBase
         this.transform.LookAt(targetTransform.position);
         _shootForward = transform.forward;
         isCasted = true;
+        
+        base.Cast(targetTransform);
     }
 
     public override void Process()
@@ -100,6 +101,7 @@ public class projectile_spell_shootable : SpellBase
 
     public override void OnComplete()
     {
+        base.OnComplete();
         //TODO switch to Object Pool
         Destroy(this.gameObject);
     }
@@ -110,8 +112,7 @@ public class projectile_spell_shootable : SpellBase
         {
             return;
         }
-
-
+        
         if (collision.gameObject.TryGetComponent<IDamageReceiver>(out IDamageReceiver receiver))
         {
             Complete();
