@@ -279,6 +279,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Target_Base
       objectReference: {fileID: 0}
+    - target: {fileID: 2731678504180746318, guid: 087a64366f1f3174d97cd6f9541aee34,
+        type: 3}
+      propertyPath: m_Name
+      value: Sphere1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 087a64366f1f3174d97cd6f9541aee34, type: 3}
 --- !u!1 &364748490
@@ -884,6 +889,11 @@ PrefabInstance:
       propertyPath: hp
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 7152718958805461011, guid: e4bc1b1d80f7020469f1cf26aee8b009,
+        type: 3}
+      propertyPath: m_Name
+      value: Cube_L
+      objectReference: {fileID: 0}
     - target: {fileID: 7169522102712870760, guid: e4bc1b1d80f7020469f1cf26aee8b009,
         type: 3}
       propertyPath: m_Name
@@ -1044,6 +1054,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Target_Base_3
       objectReference: {fileID: 0}
+    - target: {fileID: 2731678504180746318, guid: 087a64366f1f3174d97cd6f9541aee34,
+        type: 3}
+      propertyPath: m_Name
+      value: Sphere0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 087a64366f1f3174d97cd6f9541aee34, type: 3}
 --- !u!1 &832575517
@@ -1162,6 +1177,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Target_Base_1
       objectReference: {fileID: 0}
+    - target: {fileID: 2731678504180746318, guid: 087a64366f1f3174d97cd6f9541aee34,
+        type: 3}
+      propertyPath: m_Name
+      value: Sphere2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 087a64366f1f3174d97cd6f9541aee34, type: 3}
 --- !u!1001 &1203341259
@@ -1230,6 +1250,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PF_Target_Base_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731678504180746318, guid: 087a64366f1f3174d97cd6f9541aee34,
+        type: 3}
+      propertyPath: m_Name
+      value: Sphere3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 087a64366f1f3174d97cd6f9541aee34, type: 3}
@@ -1459,6 +1484,11 @@ PrefabInstance:
         type: 3}
       propertyPath: hp
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152718958805461011, guid: e4bc1b1d80f7020469f1cf26aee8b009,
+        type: 3}
+      propertyPath: m_Name
+      value: Cube_R
       objectReference: {fileID: 0}
     - target: {fileID: 7169522102712870760, guid: e4bc1b1d80f7020469f1cf26aee8b009,
         type: 3}
@@ -1777,6 +1807,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7152718958805461011, guid: e4bc1b1d80f7020469f1cf26aee8b009,
+        type: 3}
+      propertyPath: m_Name
+      value: Cube_M
+      objectReference: {fileID: 0}
     - target: {fileID: 7169522102712870760, guid: e4bc1b1d80f7020469f1cf26aee8b009,
         type: 3}
       propertyPath: m_Name
