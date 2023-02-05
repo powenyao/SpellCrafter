@@ -68,14 +68,14 @@ public class CraftingMenu : MonoBehaviour
         var compSelector = aspectSelectors[CraftingAspects.AspectName.Components];
         var trackingSelector = aspectSelectors[CraftingAspects.AspectName.Tracking];
         var pathSelector = aspectSelectors[CraftingAspects.AspectName.Path];
-//        var triggerSelector = aspectSelectors[CraftingAspects.AspectName.Trigger];
+        var triggerSelector = aspectSelectors[CraftingAspects.AspectName.Trigger];
 
         SpellComposition composition = new SpellComposition(
             Enum.Parse<Enum_SpellShapes>(shapeSelector.CurrentSelections[0]),
             Enum.Parse<Enum_Elements>(elementSelector.CurrentSelections[0]),
             Enum.Parse<Enum_SpellComponents_Tracking>(trackingSelector.CurrentSelections[0]),
-            Enum.Parse<Enum_SpellComponents_Path>(pathSelector.CurrentSelections[0])
-            //            Enum.Parse<Enum_SpellComponents_Trigger>(triggerSelector.CurrentSelections[0])
+            Enum.Parse<Enum_SpellComponents_Path>(pathSelector.CurrentSelections[0]),
+            Enum.Parse<Enum_SpellComponents_Trigger>(triggerSelector.CurrentSelections[0])
 
         );
         //composition.SetPayLoad(Enum.Parse<Enum_SpellComponents_Path>(pathSelector.CurrentSelections[0]);

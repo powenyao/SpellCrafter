@@ -103,7 +103,7 @@ public class Manager_Debug : MonoBehaviour
         }
         */
     }
-
+/*
     private int debugButtonStartX = 10 + 200*0;
     private int debugButtonStartY = 10;
     private int debugButtonWidth = 200;
@@ -113,7 +113,7 @@ public class Manager_Debug : MonoBehaviour
 
     private void OnGUI()
     {
-        /*
+        
         int i = 0;
         if (GUI.Button(new Rect(debugButtonStartX, debugButtonStartY + debugButtonHeight * i, debugButtonWidth,
                     debugButtonHeight), "Show/Hide Debug Code " + _debugCodeKeyboardKeyUpList.Count))
@@ -147,6 +147,7 @@ public class Manager_Debug : MonoBehaviour
 
             i++;
         }
-        */
+        
     }
+    */
 }

@@ -202,6 +202,9 @@ public class projectile_spell_shootable : SpellBase
 
     public override void SearchTarget()
     {
+        rotateValue = rotateInit;
+        enableHomingTimer = 0f;
+
         Physics.SphereCastNonAlloc(transform.position, searchRadius, transform.forward, _hitInfo);
 
         List<RaycastHit> list = _hitInfo.ToList().OrderBy(o => GetTargetDistance(o)).ToList();

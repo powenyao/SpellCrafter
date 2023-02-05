@@ -22,7 +22,7 @@ public static class SpellComponentReference
         }
         else
         {
-            return 0.5f;
+            return 1f;
         }
 
         //Simple version

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -21,14 +22,16 @@ public class AspectSelector : MonoBehaviour
         // Set panel header
         var headerText = header.GetComponent<TextMeshProUGUI>();
         headerText.text = aspectName.ToString();
-        
+
         // Instantiate panel options
         ToggleGroup toggleGroup = choicesPanel.GetComponent<ToggleGroup>();
         var options = CraftingAspects.GetOptions(aspectName);
         CurrentSelections = new List<string>(options.Length);
 
-        foreach (string option in options)
+        //foreach (string option in options)
+        for (int i = 0; i < options.Length; i++)
         {
+            var option = options[i];
             GameObject choiceObject = GameObject.Instantiate(choiceButtonTemplate);
             choiceObject.transform.SetParent(choicesPanel.transform, false);
 
@@ -38,9 +41,27 @@ public class AspectSelector : MonoBehaviour
                 // Group is used to force single selection
                 toggle.group = toggleGroup;
             }
+
             toggle.onValueChanged.AddListener(isOn => OnToggleChangedHandler(option, isOn));
 
             var label = choiceObject.transform.Find("Label").GetComponent<TextMeshProUGUI>();
+            //TODO
+            //Quick dirty inefficient yolo way to change element option color
+            if (aspectName == CraftingAspects.AspectName.Elements)
+            {
+//                Dev.Log("AspectName: " + aspectName);
+                if (Enum.TryParse<Enum_Elements>(option, out Enum_Elements elements))
+                {
+                    //Method 1
+                    var color = Core.Ins.UIEffectsManager.GetColorForElement(elements);
+                    color.a = 255;
+                    label.color = color;
+                    //Method 2, which somehow doesn't show text despite it supposed to be highlighter effect
+                    //string colorValues = ColorUtility.ToHtmlStringRGB( color );
+                    //option = "<mark=#" + colorValues+ ">" + option + "</mark>";
+                }
+            }
+
             label.text = option;
         }
     }
