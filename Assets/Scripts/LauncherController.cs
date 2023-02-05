@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public delegate void OnSpellLaunchedHandler();
+public delegate void OnSpellLaunchedHandler(float cost);
 
 public class LauncherController : MonoBehaviour
 {
@@ -13,7 +13,20 @@ public class LauncherController : MonoBehaviour
     [SerializeField]
     LauncherBase _launcher;
 
+    [SerializeField]
+    CraftingMenu craftingMenu;
+
     public event OnSpellLaunchedHandler OnSpellLaunched;
+
+    private float lastSpellCost = 0f;
+
+    void Awake()
+    {
+        craftingMenu.OnSpellPrepped += composition =>
+        {
+            lastSpellCost = 1 + composition.GetEffects().Count;
+        };
+    }
 
     void OnEnable()
     {
@@ -32,7 +45,7 @@ public class LauncherController : MonoBehaviour
         if (_launcher != null)
         {
             _launcher.TryLaunch();
-            OnSpellLaunched?.Invoke();
+            OnSpellLaunched?.Invoke(lastSpellCost);
         }
     }
 

@@ -13,6 +13,8 @@ public class OscillateObject : MonoBehaviour
         new Vector3(-8, 0, 0),
         new Vector3(8, 0, 0)
     };
+    [SerializeField]
+    float waypointPauseTime = 0.75f;
 
     [SerializeField]
     bool areWaypointsRelative = true;
@@ -21,6 +23,7 @@ public class OscillateObject : MonoBehaviour
 
     private Vector3[] waypoints;
     private bool allowMovement = true;
+    private float waypointCountdown = 0f;
     private int curWaypointIndex = 0;
 
     // Start is called before the first frame update
@@ -34,12 +37,19 @@ public class OscillateObject : MonoBehaviour
     {
         if (allowMovement == true)
         {
+            if (waypointCountdown > 0f)
+            {
+                waypointCountdown -= Time.deltaTime;
+                return;
+            }
+
             var newPosition = Vector3.MoveTowards(transform.position, waypoints[curWaypointIndex], Time.deltaTime * speed);
 
             transform.position = newPosition;
             if (transform.position == waypoints[curWaypointIndex])
             {
                 curWaypointIndex = (curWaypointIndex + 1) % waypoints.Length;
+                waypointCountdown = waypointPauseTime;
             }
         }
     }
@@ -47,6 +57,7 @@ public class OscillateObject : MonoBehaviour
     void StopMotion()
     {
         allowMovement = false;
+        waypointCountdown = 0f;
     }
 
     void ResumeMotion()

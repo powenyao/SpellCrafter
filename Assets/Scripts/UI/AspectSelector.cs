@@ -51,7 +51,12 @@ public class AspectSelector : MonoBehaviour
 
         if (isOn)
         {
-            CurrentSelections.Add(name);
+            // Seems toggle fires the event if already selected option is clicked twice
+            // Temporary fix for this issue
+            if (!CurrentSelections.Contains(name))
+                CurrentSelections.Add(name);
+            else
+                return;
         }
         else
         {

@@ -6,15 +6,18 @@ using UnityEngine;
 public class LevelUI : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI spellCountText;
+    TextMeshProUGUI spellStatsText;
 
     [SerializeField]
     TextMeshProUGUI enemyCountText;
 
+    [SerializeField]
+    TextMeshProUGUI narrationText;
+
     // Start is called before the first frame update
     void Start()
     {
-        SetSpellCount(0);
+        SetSpellStats(0, 0);
         SetEnemyCount(0);
     }
 
@@ -24,13 +27,18 @@ public class LevelUI : MonoBehaviour
         
     }
 
-    public void SetSpellCount(int value)
+    public void SetSpellStats(int count, float cost)
     {
-        spellCountText.text = "Spells cast: " + value.ToString();
+        spellStatsText.text = $"Cast {count} spells, cost {cost}";
     }
 
     public void SetEnemyCount(int value)
     {
-        enemyCountText.text = "Enemies left: " + value.ToString();
+        enemyCountText.text = $"{value} enemies left";
+    }
+
+    public void SetNarration(string text)
+    {
+        narrationText.text = text;
     }
 }

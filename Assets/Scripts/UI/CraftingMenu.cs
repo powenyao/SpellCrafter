@@ -5,10 +5,14 @@ using TMPro;
 using UnityEngine;
 using System.Linq;
 
+public delegate void OnSpellPreppedHandler(SpellComposition composition);
+
 public class CraftingMenu : MonoBehaviour
 {
     public GameObject panelContainer;
     public GameObject finalView;
+
+    public event OnSpellPreppedHandler OnSpellPrepped;
 
     private bool selectionChanged = false;
     private Dictionary<CraftingAspects.AspectName, AspectSelector> aspectSelectors;
@@ -79,5 +83,6 @@ public class CraftingMenu : MonoBehaviour
         sorcery.PrepSpellWithComposition("Player", composition, replaceIfExists: true);
 
         Debug.Log("New spell prepped!");
+        OnSpellPrepped?.Invoke(composition);
     }
 }
