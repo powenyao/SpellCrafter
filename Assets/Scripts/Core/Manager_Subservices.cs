@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
@@ -15,10 +16,14 @@ public class Manager_Subservices : MonoBehaviour
 
     public void RegisterService(string serviceName, XrosSubservice subservice)
     {
+        if (_subservices.ContainsKey(serviceName))
+        {
+            _subservices.Remove(serviceName);
+        }
         _subservices.Add(serviceName, subservice);
 
         //So we have less subservices floating around
-        subservice.transform.SetParent(this.transform);
+        //subservice.transform.SetParent(this.transform);
 
         Dev.Log("[Manager_Subservice] Register Subservice > " + serviceName + " / " + _subservices.Count);
         EVENT_NewSubserviceRegistered?.Invoke(serviceName);
@@ -41,5 +46,15 @@ public class Manager_Subservices : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void ClearSubservices()
+    {
+        // foreach (var s in _subservices)
+        // {
+        //     Destroy(s.transform.gam);
+        // }
+        
+        _subservices.Clear();
     }
 }
