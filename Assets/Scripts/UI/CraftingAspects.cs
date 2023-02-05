@@ -55,6 +55,10 @@ public static class CraftingAspects
         {
             AspectName.Path,
             Enum.GetNames(typeof(Enum_SpellComponents_Path))
+        },
+        {
+            AspectName.Trigger,
+            Enum.GetNames(typeof(Enum_SpellComponents_Trigger))
         }
     };
 
