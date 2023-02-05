@@ -81,9 +81,9 @@ public class GameManager : MonoBehaviour
             SetLevelScoreStats(numSpellsCast + 1, totalSpellCost + cost);
         };
 
-        goNextAction.action.performed += obj => StartCoroutine(NextLevelAsync());
-        goPrevAction.action.performed += obj => StartCoroutine(PreviousLevelAsync());
-        restartAction.action.performed += obj => StartCoroutine(RestartLevelAsync());
+        // goNextAction.action.performed += obj => StartCoroutine(NextLevelAsync());
+        // goPrevAction.action.performed += obj => StartCoroutine(PreviousLevelAsync());
+        // restartAction.action.performed += obj => StartCoroutine(RestartLevelAsync());
     }
 
     // Start is called before the first frame update
