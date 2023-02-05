@@ -85,6 +85,20 @@ public class DamageReceiverBase : MonoBehaviour, IDamageReceiver
                     actualDamageValueUtilized = Mathf.FloorToInt(actualDamageValueUtilized);
                     //Dev.Log("[DamageReceiverBase] Receive Damage > can overkill. actualDamageValueUtilized " + actualDamageValueUtilized);
                 }
+                else
+                {
+                    if (effectiveDamageVal < damageVal) //this is for the case where you use the wrong element
+                    {
+                        actualDamageValueUtilized = damageVal;
+                    }       
+                }
+            }
+            else
+            {
+                if (effectiveDamageVal < damageVal) //this is for the case where you use the wrong element
+                {
+                    actualDamageValueUtilized = damageVal;
+                }    
             }
 
             damageDealer.DamageTakenByReceiver(actualDamageValueUtilized);
