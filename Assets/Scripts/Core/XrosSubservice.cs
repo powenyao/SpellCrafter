@@ -6,6 +6,6 @@ public class XrosSubservice : MonoBehaviour
 {
     void Awake()
     {
-        this.transform.SetParent(Core.Ins.transform);
+        //this.transform.SetParent(Core.Ins.transform);
     }
 }

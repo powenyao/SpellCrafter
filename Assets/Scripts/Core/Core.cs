@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 /// <summary>
@@ -46,6 +47,14 @@ public class Core : MonoBehaviour
         SceneVisibilityManager.instance.DisablePicking(this.gameObject, true);
 #endif
         //SystemMenu.LoadModule();
+
+        //SceneManager.activeSceneChanged += HandleSceneChange;
+    }
+
+    private void HandleSceneChange(Scene arg0, Scene arg1)
+    {
+        Dev.Log("[Core] Handle Scene Change");
+        this.Subservices.ClearSubservices();
     }
 
     // [Header("Sensory Services & Settings")]
