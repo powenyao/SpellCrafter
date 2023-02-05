@@ -1659,10 +1659,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 488570331, guid: 46f3ff1bb27374e4fbe24153809130cf, type: 3}
-      propertyPath: bypassViewController
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1216038026235516256, guid: 46f3ff1bb27374e4fbe24153809130cf,
         type: 3}
       propertyPath: m_Name
@@ -1723,13 +1719,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1216038026719645765, guid: 46f3ff1bb27374e4fbe24153809130cf,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1216038026719645765, guid: 46f3ff1bb27374e4fbe24153809130cf, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46f3ff1bb27374e4fbe24153809130cf, type: 3}
 --- !u!1001 &3975432674637723375
 PrefabInstance:

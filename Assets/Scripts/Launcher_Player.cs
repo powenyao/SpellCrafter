@@ -83,7 +83,7 @@ public class Launcher_Player : LauncherBase
     float maxLaserDistance = 50f;
     void Update()
     {
-        DebugUpdate();
+        //DebugUpdate();
         
         if (_lineRenderer) 
         {
