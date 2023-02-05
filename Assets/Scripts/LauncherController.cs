@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public delegate void OnSpellLaunchedHandler();
+
 public class LauncherController : MonoBehaviour
 {
     [SerializeField]
@@ -10,6 +12,8 @@ public class LauncherController : MonoBehaviour
 
     [SerializeField]
     LauncherBase _launcher;
+
+    public event OnSpellLaunchedHandler OnSpellLaunched;
 
     void OnEnable()
     {
@@ -28,6 +32,7 @@ public class LauncherController : MonoBehaviour
         if (_launcher != null)
         {
             _launcher.TryLaunch();
+            OnSpellLaunched?.Invoke();
         }
     }
 
