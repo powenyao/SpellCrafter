@@ -21,11 +21,11 @@ public static class SpellComponentReference
         }
         else if (receiveElement == dealerElement)
         {
-            return 2;
+            return 2f;
         }
         else
         {
-            return 1f;
+            return 0.5f;
         }
 
         //Simple version

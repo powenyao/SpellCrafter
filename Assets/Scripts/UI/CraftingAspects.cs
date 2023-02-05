@@ -45,16 +45,16 @@ public static class CraftingAspects
         {
             AspectName.Components,
             //new string[] { "Concentrate", "Widen", "Pull",}
-            //new string[] { Enum_SpellComponents_Effects.Concentrate.ToString(), Enum_SpellComponents_Effects.Widen.ToString(), Enum_SpellComponents_Effects.Pull.ToString() }
-            Enum.GetNames(typeof(Enum_SpellComponents_Effects))
+            new string[] { Enum_SpellComponents_Effects.Widen.ToString(), Enum_SpellComponents_Effects.SpeedUp.ToString(), Enum_SpellComponents_Effects.SpeedDown.ToString(), Enum_SpellComponents_Effects.Concentrate.ToString(), Enum_SpellComponents_Effects.PassThrough.ToString() }
+            // Enum.GetNames(typeof(Enum_SpellComponents_Effects))
         },
         {
             AspectName.Tracking,
-            Enum.GetNames(typeof(Enum_SpellComponents_Tracking))
+            new string[] { Enum_SpellComponents_Tracking.None.ToString(), Enum_SpellComponents_Tracking.Full.ToString() }
         },
         {
             AspectName.Path,
-            Enum.GetNames(typeof(Enum_SpellComponents_Path))
+            new string[] { Enum_SpellComponents_Path.None.ToString(), Enum_SpellComponents_Path.Parabola.ToString() }
         },
         {
             AspectName.Trigger,

@@ -25,6 +25,9 @@ public class LauncherController : MonoBehaviour
         craftingMenu.OnSpellPrepped += composition =>
         {
             lastSpellCost = 1 + 0.5f * composition.GetEffects().Count;
+            lastSpellCost += composition.GetTracking() == Enum_SpellComponents_Tracking.None ? 0 : 0.5f;
+            lastSpellCost += composition.GetTrigger() == Enum_SpellComponents_Trigger.None ? 0 : 0.5f;
+            lastSpellCost += composition.GetPath() == Enum_SpellComponents_Path.None ? 0 : 0.5f;
         };
     }
 
