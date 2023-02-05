@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
     private int numLevels;
     private int currentLevelIndex = -1;
     private GameObject currentLevel;
+    private IEnumerable<ShootingTarget> currentTargets;
     private int _numSpellsCast = 0;
+    private int _numEnemiesAlive = 0;
 
     public int numSpellsCast
     {
@@ -26,6 +28,16 @@ public class GameManager : MonoBehaviour
         {
             _numSpellsCast = value;
             levelUI.SetSpellCount(value);
+        }
+    }
+
+    public int numEnemiesAlive
+    {
+        get { return _numEnemiesAlive; }
+        set
+        {
+            _numEnemiesAlive = value;
+            levelUI.SetEnemyCount(value);
         }
     }
 
@@ -70,8 +82,23 @@ public class GameManager : MonoBehaviour
         GameObject template = levelTemplates.transform.GetChild(currentLevelIndex).gameObject;
         currentLevel = Instantiate(template, transform, true);
         currentLevel.name = "CurrentLevel";
-        currentLevel.SetActive(true);
+
+        int enemyCount = 0;
+        currentTargets = currentLevel.GetComponentsInChildren<ShootingTarget>();
+        foreach (ShootingTarget enemy in currentTargets)
+        {
+            enemy.OnTargetDestroyed += HandleTargetDestroyed;
+            enemyCount++;
+        }
+        numEnemiesAlive = enemyCount;
         numSpellsCast = 0;
+
+        currentLevel.SetActive(true);
+    }
+
+    private void HandleTargetDestroyed(ShootingTarget target)
+    {
+        numEnemiesAlive--;
     }
 
     private void UnloadCurrentLevel()
@@ -79,6 +106,10 @@ public class GameManager : MonoBehaviour
         if (currentLevelIndex == -1)
             return;
 
+        foreach (ShootingTarget enemy in currentTargets)
+        {
+            enemy.OnTargetDestroyed -= HandleTargetDestroyed;
+        }
         Destroy(currentLevel);
     }
 

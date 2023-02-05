@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public delegate void OnTargetDestroyedHandler(ShootingTarget target);
+
 public class ShootingTarget : MonoBehaviour, IDamageReceiver
 {
     [SerializeField]
@@ -23,6 +25,8 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
 
     [SerializeField]
     private List<Enum_SpellComponents_Effects> _listSpellComponents = new List<Enum_SpellComponents_Effects>();
+
+    public event OnTargetDestroyedHandler OnTargetDestroyed;
 
     void SetRendererColor(Color color, string name = null)
     {
@@ -155,6 +159,7 @@ public class ShootingTarget : MonoBehaviour, IDamageReceiver
 
     public void Destruct()
     {
+        OnTargetDestroyed?.Invoke(this);
         Destroy(this.gameObject);
     }
     
