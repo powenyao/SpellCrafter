@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public delegate void OnTargetDestroyedHandler(ShootingTarget target);
 
-public class ShootingTarget : DamageReceiverBase
+public class ShootingTarget : DamageReceiverBase, ITarget
 {
     public event OnTargetDestroyedHandler OnTargetDestroyed;
     
@@ -116,5 +116,10 @@ public class ShootingTarget : DamageReceiverBase
         {
             SetRendererColor(Core.Ins.UIEffectsManager.GetColorForElement(_currentElement));
         }
+    }
+
+    public GameObject GetTarget()
+    {
+        return this.gameObject;
     }
 }
