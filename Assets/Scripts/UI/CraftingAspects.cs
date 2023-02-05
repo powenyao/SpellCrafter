@@ -15,7 +15,9 @@ public static class CraftingAspects
     {
         Elements,
         Forms,
-        Components
+        Components,
+        Tracking,
+        Path
     }
 
     static readonly Dictionary<AspectName, string[]> OptionsByName = new Dictionary<AspectName, string[]>
@@ -44,6 +46,14 @@ public static class CraftingAspects
             //new string[] { "Concentrate", "Widen", "Pull",}
             //new string[] { Enum_SpellComponents_Effects.Concentrate.ToString(), Enum_SpellComponents_Effects.Widen.ToString(), Enum_SpellComponents_Effects.Pull.ToString() }
             Enum.GetNames(typeof(Enum_SpellComponents_Effects))
+        },
+        {
+            AspectName.Tracking,
+            Enum.GetNames(typeof(Enum_SpellComponents_Tracking))
+        },
+        {
+            AspectName.Path,
+            Enum.GetNames(typeof(Enum_SpellComponents_Path))
         }
     };
 

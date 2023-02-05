@@ -93,5 +93,5 @@ public enum Enum_SpellComponents_Path
     Straight,
     Manhattan,
     SineWave,
-    
+    Parabola
 }

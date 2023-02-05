@@ -48,8 +48,19 @@ public class SpellComposition
         _isShapeReady = true;
     }
 
+    public SpellComposition(Enum_SpellShapes newShape, Enum_Elements newElement,
+        Enum_SpellComponents_Tracking newTracking, Enum_SpellComponents_Path newPath)
+    {
+        _shape = newShape;
+        _element = newElement;
+        _tracking = newTracking;
+        _path = newPath;
+        _isElementReady = true;
+        _isShapeReady = true;
+    }
+
     #endregion constructors
-    
+
     public void SetElement(Enum_Elements e)
     {
         _element = e;
@@ -61,7 +72,17 @@ public class SpellComposition
         _shape = s;
         _isShapeReady = true;
     }
-    
+
+    public void SetTracking(Enum_SpellComponents_Tracking t)
+    {
+        _tracking = t;
+    }
+
+    public void SetPath(Enum_SpellComponents_Path p)
+    {
+        _path = p;
+    }
+
     public Enum_Elements GetElement()
     {
         return _element;
@@ -71,7 +92,17 @@ public class SpellComposition
     {
         return _shape;
     }
-    
+
+    public Enum_SpellComponents_Tracking GetTracking()
+    {
+        return _tracking;
+    }
+
+    public Enum_SpellComponents_Path GetPath()
+    {
+        return _path;
+    }
+
     public bool IsPrepped()
     {
         return _isShapeReady && _isElementReady;

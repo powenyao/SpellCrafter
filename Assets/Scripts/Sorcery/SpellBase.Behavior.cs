@@ -39,4 +39,9 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     {
         _rigidbody.velocity = direction * moveSpeed;
     }
+
+    protected void SetRigidBodyForParabola()
+    {
+        _rigidbody.velocity = transform.forward * moveSpeed;
+    }
 }
