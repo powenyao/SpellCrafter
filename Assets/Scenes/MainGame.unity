@@ -2026,8 +2026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c7879c68472be45948cd16be830bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialText: If you're a lousy at aiming like me, you might want to checkout the
-    tracking modifiers.
+  TutorialText: Before you dive into optimization, let's talk about the tracking
+    modifier. Great for lousy aimers, like me!
   CompletionText: Convenient, right?
   IsFinal: 0
 --- !u!1 &507380860
@@ -2077,7 +2077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialText: Notice that spells are completely absorbed on hit, which means widen
-    doesn't help here.
+    doesn't help here. The target actually only needs 10 damage!
   CompletionText: Let's see how to mitigate that...
   IsFinal: 0
 --- !u!1 &517255858
@@ -4050,7 +4050,7 @@ PrefabInstance:
     - target: {fileID: 2731678503296945820, guid: 0d9dd1cc22cacff4ca0ef1a078ec0117,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2731678503296945820, guid: 0d9dd1cc22cacff4ca0ef1a078ec0117,
         type: 3}
@@ -5087,7 +5087,7 @@ PrefabInstance:
     - target: {fileID: 2731678503296945820, guid: 0d9dd1cc22cacff4ca0ef1a078ec0117,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2731678503296945820, guid: 0d9dd1cc22cacff4ca0ef1a078ec0117,
         type: 3}

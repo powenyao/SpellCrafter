@@ -150,7 +150,7 @@ MonoBehaviour:
   rotatePace: 0.1
   enableHomingTime: 0.2
   _rigidbody: {fileID: 8411429147571754510}
-  damageValue: 5
+  damageValue: 10
   elementType: 0
   _visualization: {fileID: 1506595041799249486}
   searchRadius: 30

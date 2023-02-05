@@ -108,6 +108,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a5d4d2fb-30bf-479c-a5bf-0074d1013f28",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleCraftingMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1eccd5e8-624a-484f-bcbd-be4d38a71e43",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
