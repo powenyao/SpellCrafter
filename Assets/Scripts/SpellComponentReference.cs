@@ -4,11 +4,14 @@ using UnityEngine;
 
 public static class SpellComponentReference
 {
+    //Launcher
+    public static float PlayerLauncher_Cooldown = 0.5f;
+    //Spell Component values
     public static float Widen_ScaleMultiplier = 2f;
     public static float Concentrate_DamageMultiplier = 2f;
     public static float Speedup_Multiplier = 2f;
     public static float Speeddown_Multiplier = 0.5f;
-
+    
     public static float GetElementalDamageMultiplier(Enum_Elements dealerElement, Enum_Elements receiveElement)
     {
         //Alt version

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// SpellComposition is intended to be a data class to store the spell that is being prepared
@@ -68,9 +69,20 @@ public class SpellComposition
 
     #endregion constructors
 
+    public Enum_SpellComponents_Trigger GetTrigger()
+    {
+        return _trigger;
+    }
     public void SetPayLoad(SpellComposition payloadComposition)
     {
         this._payload = payloadComposition;
+    }
+
+    [SerializeField]
+    private GameObject SimplePayload;
+    public GameObject GetSimplePayLoad()
+    {
+        return SimplePayload;
     }
     
     public void SetElement(Enum_Elements e)
