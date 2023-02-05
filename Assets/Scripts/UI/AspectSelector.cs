@@ -22,6 +22,10 @@ public class AspectSelector : MonoBehaviour
         // Set panel header
         var headerText = header.GetComponent<TextMeshProUGUI>();
         headerText.text = aspectName.ToString();
+        if (aspectName.ToString().Equals("Trigger"))
+        {
+            headerText.text = "Pull Effect";
+        }
 
         // Instantiate panel options
         ToggleGroup toggleGroup = choicesPanel.GetComponent<ToggleGroup>();
@@ -69,6 +73,11 @@ public class AspectSelector : MonoBehaviour
             if (option.Equals("Cylinder"))
             {
                 label.text = "Blade";
+            }
+
+            if (option.Equals("OnContact"))
+            {
+                label.text = "Use";
             }
         }
     }
