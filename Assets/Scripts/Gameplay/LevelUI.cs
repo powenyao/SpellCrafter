@@ -30,12 +30,12 @@ public class LevelUI : MonoBehaviour
 
     public void SetSpellStats(int count, float cost)
     {
-        spellStatsText.text = $"Cast {count} spells with cost {cost.ToString()}";
+        spellStatsText.text = $"Spells cast: {count}, Mana spent: {cost.ToString()}";
     }
 
     public void SetEnemyCount(int value)
     {
-        enemyCountText.text = $"{value} enemies left";
+        enemyCountText.text = $"Targets left: {value}";
     }
 
     public void SetNarration(string text)

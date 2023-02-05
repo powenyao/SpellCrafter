@@ -635,6 +635,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 705583865780191713, guid: fb26fcbc4938b274d840d3a50ce78fea,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 650
+      objectReference: {fileID: 0}
+    - target: {fileID: 705583865780191713, guid: fb26fcbc4938b274d840d3a50ce78fea,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 705583865780191713, guid: fb26fcbc4938b274d840d3a50ce78fea,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -110
+      objectReference: {fileID: 0}
+    - target: {fileID: 705583866670277180, guid: fb26fcbc4938b274d840d3a50ce78fea,
+        type: 3}
+      propertyPath: m_text
+      value: 'Team:
+
+        Powen Yao
+
+        Vinay Gupta
+
+        Yang Tian
+
+        Nicholas
+        Weber'
+      objectReference: {fileID: 0}
     - target: {fileID: 705583867387551424, guid: fb26fcbc4938b274d840d3a50ce78fea,
         type: 3}
       propertyPath: m_Pivot.x
