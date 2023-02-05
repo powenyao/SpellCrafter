@@ -15,10 +15,19 @@ namespace Assets.Scripts.Gameplay
         public float manaCost = float.MaxValue;
     }
 
-    public static class PlayerStats
+    public static class PlayerScores
     {
         public static readonly string LAST_SCORE_KEY = "LastScore";
         public static readonly string BEST_SCORE_KEY = "BestScore";
+
+        public static void InitializeBestScore()
+        {
+            Score best = Get(BEST_SCORE_KEY);
+            if (best.numSpells == 0 && best.manaCost == 0)
+            {
+                Set(BEST_SCORE_KEY, new Score() { numSpells = int.MaxValue, manaCost = int.MaxValue });
+            }
+        }
 
         public static Score Get(string key)
         {
@@ -40,9 +49,12 @@ namespace Assets.Scripts.Gameplay
         {
             Score cur = new Score() { numSpells = numSpells, manaCost = manaCost };
             Set(LAST_SCORE_KEY, cur);
+
+            // Anytime a new score is added, it should be compared against the best score:
+            UpdateBest(cur);
         }
 
-        public static bool UpdateBest(Score score)
+        private static bool UpdateBest(Score score)
         {
             Score best = Get(BEST_SCORE_KEY);
             if (score.manaCost < best.manaCost)

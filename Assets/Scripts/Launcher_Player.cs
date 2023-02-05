@@ -33,16 +33,27 @@ public class Launcher_Player : LauncherBase
         composition.AddSpellComponent(Enum_SpellComponentCategories.Effects, "SpeedUp");
         sorcery.PrepSpellWithComposition(_launcherIdentifier, composition);
     }
+
+    private float lastLaunchTime = 0f;
     
     [ContextMenu("Launch")]
     protected override void Launch()
     {
+        var isCoolingdown = Time.time < lastLaunchTime + SpellComponentReference.PlayerLauncher_Cooldown;
+        if (isCoolingdown)
+        {
+            var remainingTime = lastLaunchTime + SpellComponentReference.PlayerLauncher_Cooldown - Time.time;
+            Debug.Log("[Launcher_Player] Launch > cooldown needs " + remainingTime + " seconds");
+            return;
+        }
+        
         var projectile = sorcery.GetSpell(_launcherIdentifier, launchTransform.position,
             launchTransform.rotation);
         if (projectile)
         {
             var spell = projectile.GetComponent<SpellBase>();
-            spell.Cast();    
+            spell.Cast();
+            lastLaunchTime = Time.time;
         }
         else
         {

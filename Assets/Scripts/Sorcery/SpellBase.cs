@@ -84,7 +84,18 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     public virtual void Complete()
     {
         //TODO release payload
-        
+
+        if (_composition.GetTrigger() != Enum_SpellComponents_Trigger.None)
+        {
+//            Dev.Log("[Spellbase] Complete > hasTrigger " + _composition.GetTrigger());
+            //var go = Instantiate(_composition.GetSimplePayLoad(), this.transform);
+            var go = Instantiate(Resources.Load("Explosive") as GameObject);
+            go.transform.position = this.transform.position;
+            //Dev.Log("[Spellbase] Complete > hasTrigger " + Dev.GetPath(go.transform));
+            var payload = go.GetComponent<Explosive>();
+            payload.Setup();
+            payload.TryTrigger();
+        }
         
         var sfx = Instantiate (Resources.Load ("BalloonPopExplosion") as GameObject);
         sfx.transform.position = this.transform.position;

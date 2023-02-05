@@ -76,7 +76,6 @@ public class CraftingMenu : MonoBehaviour
             Enum.Parse<Enum_SpellComponents_Tracking>(trackingSelector.CurrentSelections[0]),
             Enum.Parse<Enum_SpellComponents_Path>(pathSelector.CurrentSelections[0]),
             Enum.Parse<Enum_SpellComponents_Trigger>(triggerSelector.CurrentSelections[0])
-
         );
         //composition.SetPayLoad(Enum.Parse<Enum_SpellComponents_Path>(pathSelector.CurrentSelections[0]);
         

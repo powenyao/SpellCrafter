@@ -1,3 +1,4 @@
+using Assets.Scripts.Gameplay;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,18 +26,20 @@ public class GameManager : MonoBehaviour
     private GameObject currentLevel;
     private LevelDetails currentLevelData;
     private IEnumerable<ShootingTarget> currentTargets;
-    private int _numSpellsCast = 0;
+    private int _numSpellsCastThisLevel = 0;
+    private int _numSpellsCastThisPlaythrough = 0;
     private int _numEnemiesAlive = 0;
-    private float _totalSpellCost = 0;
+    private float _totalSpellCostThisLevel = 0;
+    private float _totalSpellCostThisPlaythrough = 0;
 
     public int numSpellsCast
     {
-        get { return _numSpellsCast; }
+        get { return _numSpellsCastThisLevel; }
     }
 
     public float totalSpellCost
-        {
-        get { return _totalSpellCost; }
+    {
+        get { return _totalSpellCostThisLevel; }
     }
 
     public int numEnemiesAlive
@@ -58,18 +61,24 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     InputActionReference restartAction;
 
-    private void SetSpellStats(int count, float cost)
+    private void SetLevelScoreStats(int count, float cost)
     {
-        _numSpellsCast = count;
-        _totalSpellCost = cost;
+        _numSpellsCastThisLevel = count;
+        _totalSpellCostThisLevel = cost;
         levelUI.SetSpellStats(count, cost);
+    }
+
+    private void IncrementPlaythroughScoreStats(int count, float cost)
+    {
+        _numSpellsCastThisPlaythrough += count;
+        _totalSpellCostThisPlaythrough += cost;
     }
 
     void Awake()
     {
         launcherController.OnSpellLaunched += (cost) =>
         {
-            SetSpellStats(numSpellsCast + 1, totalSpellCost + cost);
+            SetLevelScoreStats(numSpellsCast + 1, totalSpellCost + cost);
         };
 
         goNextAction.action.performed += obj => StartCoroutine(NextLevelAsync());
@@ -80,6 +89,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerScores.InitializeBestScore();
         numLevels = levelTemplates.transform.childCount;
         StartCoroutine(NextLevelAsync());
     }
@@ -89,7 +99,7 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    
+
     private void LoadCurrentLevel()
     {
         if (currentLevelIndex == -1)
@@ -108,7 +118,7 @@ public class GameManager : MonoBehaviour
             enemyCount++;
         }
         numEnemiesAlive = enemyCount;
-        SetSpellStats(0, 0);
+        SetLevelScoreStats(0, 0);
 
         currentLevel.SetActive(true);
         levelUI.SetNarration(currentLevelData.TutorialText);
@@ -141,6 +151,7 @@ public class GameManager : MonoBehaviour
 
     public void JumpToLevel(int levelIndex)
     {
+        // TODO: Ask Vinay how we want to handle total score in this scenario. Probably need to flag that the total score is invalid and not save it if levels are skipped.
         UnloadCurrentLevel();
         currentLevelIndex = levelIndex;
         LoadCurrentLevel();
@@ -149,11 +160,13 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Next Level")]
     public IEnumerator NextLevelAsync()
     {
+        IncrementPlaythroughScoreStats(_numSpellsCastThisLevel, _totalSpellCostThisLevel);
         bool shouldEnd = currentLevelData == null ? false : currentLevelData.IsFinal;
         UnloadCurrentLevel();
         yield return new WaitForSeconds(switchDelay);
         if (shouldEnd)
         {
+            PlayerScores.SetNewScore(_numSpellsCastThisPlaythrough, _totalSpellCostThisPlaythrough);
             SceneManager.LoadScene("EndScreen");
         }
         else

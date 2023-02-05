@@ -62,3 +62,6 @@ crashlytics-build.properties
 # Rider files
 .idea/
 
+# Visual Studio cache directory
+.vs/
+.vsconfig
