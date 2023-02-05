@@ -14,8 +14,8 @@ public class EndScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetScoreString(ref LastScoreText, PlayerScores.LAST_SCORE_KEY, "Current Score");
-        SetScoreString(ref BestScoreText, PlayerScores.BEST_SCORE_KEY, "Best Score");
+        SetScoreString(ref LastScoreText, PlayerScores.LAST_SCORE_KEY, "Mana Spent");
+        SetScoreString(ref BestScoreText, PlayerScores.BEST_SCORE_KEY, "Best");
     }
 
     private void SetScoreString(ref TMP_Text text, string scoreKey, string scoreLabel)
