@@ -240,14 +240,14 @@ public class projectile_spell_shootable : SpellBase
                     gotTarget = true;
                 }
 
-                Dev.Log("Target: " + hit.transform.name + "; Distance: " + GetTargetDistance(hit));
+//                Dev.Log("Target: " + hit.transform.name + "; Distance: " + GetTargetDistance(hit));
 
                 //break;
             }
         }
 
         gotTarget = false;
-        Dev.Log("=============================================");
+//        Dev.Log("=============================================");
     }
 
     private float GetTargetDistance(RaycastHit hit)
