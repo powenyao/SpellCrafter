@@ -21,6 +21,10 @@ public class SpellComposition
     //EFFECTS
     private List<Enum_SpellComponents_Effects> _listSpellComponentEffects = new List<Enum_SpellComponents_Effects>();
     
+    //TRIGGER & PAYLOAD
+    private Enum_SpellComponents_Trigger _trigger;
+    private SpellComposition _payload; 
+    
     // private List<Enum_SpellEffects> effectsList;
     
     //Shape and Element must be ready before the spell can first take shape
@@ -49,18 +53,26 @@ public class SpellComposition
     }
 
     public SpellComposition(Enum_SpellShapes newShape, Enum_Elements newElement,
-        Enum_SpellComponents_Tracking newTracking, Enum_SpellComponents_Path newPath)
+        Enum_SpellComponents_Tracking newTracking = Enum_SpellComponents_Tracking.None, Enum_SpellComponents_Path newPath = Enum_SpellComponents_Path.None,
+        Enum_SpellComponents_Trigger newTrigger = Enum_SpellComponents_Trigger.None)
     {
         _shape = newShape;
         _element = newElement;
+        _isShapeReady = true;
+        _isElementReady = true;
+        
         _tracking = newTracking;
         _path = newPath;
-        _isElementReady = true;
-        _isShapeReady = true;
+        _trigger = newTrigger;
     }
 
     #endregion constructors
 
+    public void SetPayLoad(SpellComposition payloadComposition)
+    {
+        this._payload = payloadComposition;
+    }
+    
     public void SetElement(Enum_Elements e)
     {
         _element = e;

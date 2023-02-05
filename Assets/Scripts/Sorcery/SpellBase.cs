@@ -124,6 +124,9 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
                     break;
                 case Enum_SpellComponents_Effects.PassThrough:
                     break;
+                case Enum_SpellComponents_Effects.SpeedDown:
+                    moveSpeed *= SpellComponentReference.Speeddown_Multiplier;
+                    break;
                 default:
                     Dev.Log("[SpellBase] SetupComposition > " + e.ToString());
                     throw new ArgumentOutOfRangeException();

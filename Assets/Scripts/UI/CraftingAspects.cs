@@ -17,7 +17,8 @@ public static class CraftingAspects
         Forms,
         Components,
         Tracking,
-        Path
+        Path,
+        Trigger
     }
 
     static readonly Dictionary<AspectName, string[]> OptionsByName = new Dictionary<AspectName, string[]>
