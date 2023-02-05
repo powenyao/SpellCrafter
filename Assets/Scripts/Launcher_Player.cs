@@ -43,7 +43,7 @@ public class Launcher_Player : LauncherBase
         if (isCoolingdown)
         {
             var remainingTime = lastLaunchTime + SpellComponentReference.PlayerLauncher_Cooldown - Time.time;
-            Debug.Log("[Launcher_Player] Launch > cooldown needs " + remainingTime + " seconds");
+//            Debug.Log("[Launcher_Player] Launch > cooldown needs " + remainingTime + " seconds");
             return;
         }
         

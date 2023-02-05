@@ -48,7 +48,7 @@ public class ViewController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.LogWarning("Do not move the mouse after clicking 'Play' to start facing the center.");
+//        Debug.LogWarning("Do not move the mouse after clicking 'Play' to start facing the center.");
     }
 
     // Update is called once per frame

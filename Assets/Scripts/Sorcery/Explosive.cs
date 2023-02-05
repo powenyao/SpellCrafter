@@ -6,10 +6,13 @@ public class Explosive : MonoBehaviour
 {
     [Tooltip("Positive for explosion, negative for blackhole.")]
     public float force = -16f;
+
     [Tooltip("How long to apply the force, in seconds.")]
     public float duration = 3f;
+
     [Tooltip("Radius within which bodies are affected.")]
     public float radius = 5f;
+
     [Tooltip("The VFX system to configure on activation.")]
     public GameObject vfxSystem;
 
@@ -28,26 +31,26 @@ public class Explosive : MonoBehaviour
     {
         if (targetObjects == null)
         {
-            targetObjects = new List<GameObject>();    
+            targetObjects = new List<GameObject>();
         }
 
         if (targetRbs == null)
         {
-            targetRbs = new List<Rigidbody>();    
+            targetRbs = new List<Rigidbody>();
         }
     }
+
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void TryTrigger()
     {
 //        Dev.Log("[Explosive] TryTrigger");
-        Trigger();    
+        Trigger();
     }
-    
+
     [ContextMenu("Trigger")]
     void Trigger()
     {
@@ -99,17 +102,20 @@ public class Explosive : MonoBehaviour
         if (elapsed < duration)
         {
             //Dev.Log("[Explosive] FixedUpdate > targetRbs Count " + targetRbs.Count);
-            foreach(Rigidbody rb in targetRbs)
+            foreach (Rigidbody rb in targetRbs)
             {
-                // No need to set explosion radius here, as we already filtered affected objects during trigger
-                rb.AddExplosionForce(force, transform.position, 0, 0, ForceMode.Impulse);
+                if (rb != null)
+                {
+                    // No need to set explosion radius here, as we already filtered affected objects during trigger
+                    rb.AddExplosionForce(force, transform.position, 0, 0, ForceMode.Impulse);
+                }
             }
         }
         else
         {
             isActive = false;
             elapsed = float.PositiveInfinity;
-            
+
             Destroy(this.gameObject);
         }
     }
