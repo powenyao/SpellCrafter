@@ -61,7 +61,11 @@ public class Launcher_Player : LauncherBase
     {
         sorcery.PrepSpell(_launcherIdentifier, Enum_SpellComponentCategories.Effects, Enum_SpellComponents_Effects.SpeedUp.ToString());
     }
-
+    [ContextMenu("Add SpeedDown")]
+    protected void DebugAddSpeedDown()
+    {
+        sorcery.PrepSpell(_launcherIdentifier, Enum_SpellComponentCategories.Effects, Enum_SpellComponents_Effects.SpeedDown.ToString());
+    }
     
     RaycastHit Hit;
     private bool hitBlocked = false;

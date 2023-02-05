@@ -67,10 +67,10 @@ public class Subservice_Sorcery : XrosSubservice
         //Setup Spells
         _spellsList.Add(Enum_SpellShapes.Sphere, PF_Basic);
         _spellsList.Add(Enum_SpellShapes.Cylinder, PF_Cylinder);
-        _spellsList.Add(Enum_SpellShapes.Horizontal, PF_Horizontal);
-        _spellsList.Add(Enum_SpellShapes.Cross, PF_Cross);
-        _spellsList.Add(Enum_SpellShapes.Wall, PF_Wall);
-        _spellsList.Add(Enum_SpellShapes.Spikes, PF_Spikes);
+        //_spellsList.Add(Enum_SpellShapes.Horizontal, PF_Horizontal);
+        //_spellsList.Add(Enum_SpellShapes.Cross, PF_Cross);
+        //_spellsList.Add(Enum_SpellShapes.Wall, PF_Wall);
+        //_spellsList.Add(Enum_SpellShapes.Spikes, PF_Spikes);
     }
 
     void SetupSprites()
@@ -85,10 +85,10 @@ public class Subservice_Sorcery : XrosSubservice
         elementSpriteDictionary.Add(Enum_Elements.BlueHydro, Resources.Load<Sprite>("SP_Element_Hydro"));
 
         shapeSpriteDictionary.Add(Enum_SpellShapes.Sphere, Resources.Load<Sprite>("SP_Shape_Sphere"));
-        shapeSpriteDictionary.Add(Enum_SpellShapes.Cross, Resources.Load<Sprite>("SP_Shape_Cross"));
-        shapeSpriteDictionary.Add(Enum_SpellShapes.Horizontal, Resources.Load<Sprite>("SP_Shape_Bar"));
-        shapeSpriteDictionary.Add(Enum_SpellShapes.Spikes, Resources.Load<Sprite>("SP_Shape_Spikes"));
-        shapeSpriteDictionary.Add(Enum_SpellShapes.Wall, Resources.Load<Sprite>("SP_Shape_Wall"));
+        //shapeSpriteDictionary.Add(Enum_SpellShapes.Cross, Resources.Load<Sprite>("SP_Shape_Cross"));
+        //shapeSpriteDictionary.Add(Enum_SpellShapes.Horizontal, Resources.Load<Sprite>("SP_Shape_Bar"));
+        //shapeSpriteDictionary.Add(Enum_SpellShapes.Spikes, Resources.Load<Sprite>("SP_Shape_Spikes"));
+        //shapeSpriteDictionary.Add(Enum_SpellShapes.Wall, Resources.Load<Sprite>("SP_Shape_Wall"));
     }
 
     void SetupDebug()
@@ -110,14 +110,14 @@ public class Subservice_Sorcery : XrosSubservice
             () => this.PrepSpell("Player", Enum_Elements.BlueHydro));
         Core.Ins.Debug.AddDebugCode(this.gameObject, nameof(Subservice_Sorcery), "PrepShape Sphere",
             () => this.PrepSpell("Player", Enum_SpellShapes.Sphere));
-        Core.Ins.Debug.AddDebugCode(this.gameObject, nameof(Subservice_Sorcery), "PrepShape Wall",
-            () => this.PrepSpell("Player", Enum_SpellShapes.Wall));
-        Core.Ins.Debug.AddDebugCode(this.gameObject, nameof(Subservice_Sorcery), "PrepShape Cross",
-            () => this.PrepSpell("Player", Enum_SpellShapes.Cross));
-        Core.Ins.Debug.AddDebugCode(this.gameObject, nameof(Subservice_Sorcery), "PrepShape Bar",
-            () => this.PrepSpell("Player", Enum_SpellShapes.Horizontal));
-        Core.Ins.Debug.AddDebugCode(this.gameObject, nameof(Subservice_Sorcery), "PrepShape Spikes",
-            () => this.PrepSpell("Player", Enum_SpellShapes.Spikes));
+        // Core.Ins.Debug.AddDebugCode(this.gameObject, nameof(Subservice_Sorcery), "PrepShape Wall",
+        //     () => this.PrepSpell("Player", Enum_SpellShapes.Wall));
+        // Core.Ins.Debug.AddDebugCode(this.gameObject, nameof(Subservice_Sorcery), "PrepShape Cross",
+        //     () => this.PrepSpell("Player", Enum_SpellShapes.Cross));
+        // Core.Ins.Debug.AddDebugCode(this.gameObject, nameof(Subservice_Sorcery), "PrepShape Bar",
+        //     () => this.PrepSpell("Player", Enum_SpellShapes.Horizontal));
+        // Core.Ins.Debug.AddDebugCode(this.gameObject, nameof(Subservice_Sorcery), "PrepShape Spikes",
+        //     () => this.PrepSpell("Player", Enum_SpellShapes.Spikes));
     }
 
     #endregion Setup

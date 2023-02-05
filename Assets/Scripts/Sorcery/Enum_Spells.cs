@@ -3,14 +3,14 @@
 public enum Enum_SpellShapes
 {
     Sphere, //Sphere
-    Hemisphere,
-    Cube,
-    Cone,
+    //Hemisphere,
+    //Cube,
+    //Cone,
     Cylinder,
-    Horizontal,
-    Cross,
-    Wall,
-    Spikes,
+    //Horizontal,
+    //Cross,
+    //Wall,
+    //Spikes,
 }
 
 public enum Enum_SpellEffects
@@ -75,6 +75,7 @@ public enum Enum_SpellComponents_Effects
     Widen,
     Concentrate,
     SpeedUp,
+    SpeedDown,
     AoE,
     PassThrough,
 }
@@ -94,4 +95,14 @@ public enum Enum_SpellComponents_Path
     Manhattan,
     SineWave,
     Parabola
+}
+
+public enum Enum_SpellComponents_Trigger
+{
+    None,
+    OnContact,
+    //OnTimeExpire,
+    //OnUserChoice,
+    //OnDistanceExpire,
+    //OnManaExpire
 }

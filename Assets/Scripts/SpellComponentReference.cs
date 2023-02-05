@@ -7,6 +7,7 @@ public static class SpellComponentReference
     public static float Widen_ScaleMultiplier = 2f;
     public static float Concentrate_DamageMultiplier = 2f;
     public static float Speedup_Multiplier = 2f;
+    public static float Speeddown_Multiplier = 0.5f;
 
     public static float GetElementalDamageMultiplier(Enum_Elements dealerElement, Enum_Elements receiveElement)
     {
