@@ -43,7 +43,7 @@ public class projectile_spell_shootable : SpellBase
             this.transform.LookAt(target.transform.position);
             _targetObj = target;
         }
-        else if (behaviorType == Enum_SpellBehaviors.Tracking)
+        else if (_composition.GetTracking() != Enum_SpellComponents_Tracking.None)
         {
             SearchTarget();
         }
@@ -51,7 +51,8 @@ public class projectile_spell_shootable : SpellBase
         _withoutTarget = _targetObj == null;
         _shootForward = transform.forward;
 
-        if (_composition.GetPath() == Enum_SpellComponents_Path.Parabola)
+        if (_composition.GetTracking() == Enum_SpellComponents_Tracking.None &&
+            _composition.GetPath() == Enum_SpellComponents_Path.Parabola)
         {
             SetRigidBodyForParabola();
         }
@@ -93,12 +94,36 @@ public class projectile_spell_shootable : SpellBase
 
     private void Moving()
     {
-        switch (behaviorType)
+        //switch (behaviorType)
+        //{
+        //    case Enum_SpellBehaviors.Tracking:
+        //        TrackingTarget(_shootForward, _targetObj);
+        //        break;
+        //    case Enum_SpellBehaviors.Path:
+        //    {
+        //        switch (_composition.GetPath())
+        //        {
+        //            case Enum_SpellComponents_Path.Parabola:
+        //            {
+        //                break;
+        //            }
+        //            default:
+        //            {
+        //                StraightMove(_shootForward);
+        //                break;
+        //            }
+        //        }
+
+        //        break;
+        //    }
+        //    default:
+        //        StraightMove(_shootForward);
+        //        break;
+        //}
+
+        switch (_composition.GetTracking())
         {
-            case Enum_SpellBehaviors.Tracking:
-                TrackingTarget(_shootForward, _targetObj);
-                break;
-            case Enum_SpellBehaviors.Path:
+            case Enum_SpellComponents_Tracking.None:
             {
                 switch (_composition.GetPath())
                 {
@@ -116,8 +141,11 @@ public class projectile_spell_shootable : SpellBase
                 break;
             }
             default:
-                StraightMove(_shootForward);
+            {
+                TrackingTarget(_shootForward, _targetObj);
+
                 break;
+            }
         }
     }
 

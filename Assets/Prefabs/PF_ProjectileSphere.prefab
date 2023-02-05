@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behaviorType: 1
   moveSpeed: 25
-  rotateSpeed: 95
+  rotateSpeed: 5
   _rigidbody: {fileID: 8411429147571754510}
   damageValue: 5
   elementType: 0

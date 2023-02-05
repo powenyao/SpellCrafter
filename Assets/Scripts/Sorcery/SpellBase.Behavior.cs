@@ -4,7 +4,7 @@
 public partial class SpellBase : MonoBehaviour, IDamageDealer
 {
     // params about BEHAVIOR
-    [SerializeField] protected Enum_SpellBehaviors behaviorType = Enum_SpellBehaviors.Path;
+    //[SerializeField] protected Enum_SpellBehaviors behaviorType = Enum_SpellBehaviors.Path;
     [SerializeField] private float moveSpeed = 15f;
     [SerializeField] private float rotateSpeed = 95f;
 
@@ -16,10 +16,10 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
         
     }
 
-    public void ChangeBehavior(Enum_SpellBehaviors newBehavior)
-    {
-        behaviorType = newBehavior;
-    }
+    //public void ChangeBehavior(Enum_SpellBehaviors newBehavior)
+    //{
+    //    behaviorType = newBehavior;
+    //}
 
     protected void TrackingTarget(Vector3 direction, GameObject target = null)
     {
