@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using UnityEngine;
 //using UnityEngine.XR.Interaction.Toolkit;
 using Debug = UnityEngine.Debug;
@@ -169,19 +170,46 @@ public class projectile_spell_shootable : SpellBase
     }
 
     private RaycastHit[] _hitInfo = new RaycastHit[10];
+    private bool gotTarget = false;
 
     public override void SearchTarget()
     {
         Physics.SphereCastNonAlloc(transform.position, searchRadius, transform.forward, _hitInfo);
 
-        foreach (var hit in _hitInfo)
+        List<RaycastHit> list = _hitInfo.ToList().OrderBy(o => GetTargetDistance(o)).ToList();
+
+        foreach (var hit in list)
         {
+            if (hit.transform == null)
+                continue;
             GameObject hitObj = hit.transform.gameObject;
             if (hitObj.TryGetComponent(out ITarget receiver))
             {
-                _targetObj = hitObj;
-                break;
+                if (!gotTarget)
+                {
+                    _targetObj = hitObj;
+                    gotTarget = true;
+                }
+
+                Dev.Log("Target: " + hit.transform.name + "; Distance: " + GetTargetDistance(hit));
+
+                //break;
             }
+        }
+
+        gotTarget = false;
+        Dev.Log("=============================================");
+    }
+
+    private float GetTargetDistance(RaycastHit hit)
+    {
+        if (hit.transform != null)
+        {
+            return Vector3.Distance(hit.transform.position, transform.position);
+        }
+        else
+        {
+            return 0;
         }
     }
 }
