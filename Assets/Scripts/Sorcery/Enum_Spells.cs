@@ -71,12 +71,12 @@ public enum Enum_SpellComponentCategories
 public enum Enum_SpellComponents_Effects
 {
     None,
-    Pull,
+    //Pull,
     Widen,
     Concentrate,
     SpeedUp,
     SpeedDown,
-    AoE,
+    //AoE,
     PassThrough,
 }
 
