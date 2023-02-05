@@ -62,7 +62,14 @@ public class AspectSelector : MonoBehaviour
                 }
             }
 
+
+
             label.text = option;
+            //TODO another hacky way to change name
+            if (option.Equals("Cylinder"))
+            {
+                label.text = "Blade";
+            }
         }
     }
 
