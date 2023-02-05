@@ -19,6 +19,7 @@ public class LevelUI : MonoBehaviour
     {
         SetSpellStats(0, 0);
         SetEnemyCount(0);
+        SetNarration("");
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class LevelUI : MonoBehaviour
 
     public void SetSpellStats(int count, float cost)
     {
-        spellStatsText.text = $"Cast {count} spells, cost {cost}";
+        spellStatsText.text = $"Cast {count} spells with cost {cost.ToString()}";
     }
 
     public void SetEnemyCount(int value)

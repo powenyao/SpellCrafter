@@ -18,13 +18,13 @@ public class LauncherController : MonoBehaviour
 
     public event OnSpellLaunchedHandler OnSpellLaunched;
 
-    private float lastSpellCost = 0f;
+    private float lastSpellCost = 1f;
 
     void Awake()
     {
         craftingMenu.OnSpellPrepped += composition =>
         {
-            lastSpellCost = 1 + composition.GetEffects().Count;
+            lastSpellCost = 1 + 0.5f * composition.GetEffects().Count;
         };
     }
 

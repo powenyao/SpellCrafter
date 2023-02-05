@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
 
     [Header("Debug")]
     public bool bypassViewController = false;
+    public bool startInCraftingMode = false;
 
     private bool craftingMode = false;
 
@@ -30,7 +31,7 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         // Start in crafting mode by default
-        craftingMode = true;
+        craftingMode = startInCraftingMode;
         UpdateActiveControls();
     }
 

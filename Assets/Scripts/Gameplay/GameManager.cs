@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         launcherController.OnSpellLaunched += (cost) =>
         {
-            SetSpellStats(numSpellsCast + 1, cost);
+            SetSpellStats(numSpellsCast + 1, totalSpellCost + cost);
         };
 
         goNextAction.action.performed += obj => StartCoroutine(NextLevelAsync());
@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         numLevels = levelTemplates.transform.childCount;
+        StartCoroutine(NextLevelAsync());
     }
 
     // Update is called once per frame
