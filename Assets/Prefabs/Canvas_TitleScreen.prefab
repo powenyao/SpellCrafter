@@ -413,13 +413,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Team:
 
+    Powen Yao
+
     Vinay Gupta
 
     Yang Tian
 
-    Nicholas Weber
-
-    Powen Yao'
+    Nicholas Weber'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
