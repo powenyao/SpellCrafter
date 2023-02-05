@@ -168,7 +168,7 @@ public class projectile_spell_shootable : SpellBase
         // }
     }
 
-    private RaycastHit[] _hitInfo = new RaycastHit[1];
+    private RaycastHit[] _hitInfo = new RaycastHit[10];
 
     public override void SearchTarget()
     {
