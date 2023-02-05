@@ -149,6 +149,7 @@ MonoBehaviour:
   rotateInit: 1
   rotatePace: 0.1
   enableHomingTime: 0.2
+  forceFactor: 10
   _rigidbody: {fileID: 8411429147571754510}
   damageValue: 10
   elementType: 0

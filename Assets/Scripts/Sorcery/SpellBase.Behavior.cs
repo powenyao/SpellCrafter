@@ -11,6 +11,7 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     [SerializeField] protected float rotatePace;
     protected float rotateValue = 0f;
     [SerializeField] protected float enableHomingTime;
+    [SerializeField] protected float forceFactor;
     protected float enableHomingTimer;
 
     [SerializeField]
@@ -77,5 +78,16 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     protected void SetRigidBodyForParabola()
     {
         _rigidbody.velocity = transform.forward * moveSpeed;
+    }
+
+    protected void SetCurvedMode()
+    {
+        _rigidbody.velocity = transform.forward * moveSpeed;
+        _rigidbody.useGravity = false;
+    }    
+
+    protected void CurvedMove()
+    {
+        _rigidbody.AddForce(-transform.up * forceFactor);
     }
 }

@@ -51,10 +51,23 @@ public class projectile_spell_shootable : SpellBase
         _withoutTarget = _targetObj == null;
         _shootForward = transform.forward;
 
-        if (_composition.GetTracking() == Enum_SpellComponents_Tracking.None &&
-            _composition.GetPath() == Enum_SpellComponents_Path.Parabola)
+        if (_composition.GetTracking() == Enum_SpellComponents_Tracking.None)
         {
-            SetRigidBodyForParabola();
+            switch (_composition.GetPath())
+            {
+                case Enum_SpellComponents_Path.Curved:
+                {
+                    SetCurvedMode();
+
+                    break;
+                }
+                case Enum_SpellComponents_Path.Parabola:
+                {
+                    SetRigidBodyForParabola();
+
+                    break;
+                }
+            }
         }
 
         base.Cast(target);
@@ -129,6 +142,11 @@ public class projectile_spell_shootable : SpellBase
                 {
                     case Enum_SpellComponents_Path.Parabola:
                     {
+                        break;
+                    }
+                    case Enum_SpellComponents_Path.Curved:
+                    {
+                        CurvedMove();
                         break;
                     }
                     default:
