@@ -19,15 +19,22 @@ public class Explosive : MonoBehaviour
     public List<Rigidbody> targetRbs { get; private set; }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Setup();
     }
 
     public void Setup()
     {
-        targetObjects = new List<GameObject>();
-        targetRbs = new List<Rigidbody>();
+        if (targetObjects == null)
+        {
+            targetObjects = new List<GameObject>();    
+        }
+
+        if (targetRbs == null)
+        {
+            targetRbs = new List<Rigidbody>();    
+        }
     }
     // Update is called once per frame
     void Update()
@@ -37,6 +44,7 @@ public class Explosive : MonoBehaviour
 
     public void TryTrigger()
     {
+//        Dev.Log("[Explosive] TryTrigger");
         Trigger();    
     }
     
@@ -50,7 +58,7 @@ public class Explosive : MonoBehaviour
         isActive = true;
         elapsed = 0;
 
-        Dev.Log("[Explosive] Trigger");
+        //Dev.Log("[Explosive] Trigger");
         targetObjects.Clear();
         targetRbs.Clear();
         foreach (Collider c in Physics.OverlapSphere(transform.position, radius))
@@ -63,8 +71,8 @@ public class Explosive : MonoBehaviour
             }
         }
 
-        Dev.Log("[Explosive] Trigger > " + targetObjects.Count);
-        Dev.Log("[Explosive] Trigger > " + targetRbs.Count);
+        //Dev.Log("[Explosive] Trigger > " + targetObjects.Count);
+        //Dev.Log("[Explosive] Trigger > " + targetRbs.Count);
         if (vfxSystem != null)
         {
             ParticleSystem ps = vfxSystem.GetComponent<ParticleSystem>();
@@ -86,11 +94,11 @@ public class Explosive : MonoBehaviour
             return;
 
         elapsed += Time.fixedDeltaTime;
-        Dev.Log("[Explosive] FixedUpdate > elapsed " + elapsed);
-        Dev.Log("[Explosive] FixedUpdate > duration " + duration);
+        //Dev.Log("[Explosive] FixedUpdate > elapsed " + elapsed);
+        //Dev.Log("[Explosive] FixedUpdate > duration " + duration);
         if (elapsed < duration)
         {
-            Dev.Log("[Explosive] FixedUpdate > targetRbs Count " + targetRbs.Count);
+            //Dev.Log("[Explosive] FixedUpdate > targetRbs Count " + targetRbs.Count);
             foreach(Rigidbody rb in targetRbs)
             {
                 // No need to set explosion radius here, as we already filtered affected objects during trigger
@@ -101,6 +109,8 @@ public class Explosive : MonoBehaviour
         {
             isActive = false;
             elapsed = float.PositiveInfinity;
+            
+            Destroy(this.gameObject);
         }
     }
 }
