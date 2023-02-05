@@ -11,20 +11,20 @@ public class ShootingTarget : DamageReceiverBase
 {
     public event OnTargetDestroyedHandler OnTargetDestroyed;
     
-    protected override void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.TryGetComponent<IDamageDealer>(out IDamageDealer dealer))
-        {
-            SetRendererColor(Color.yellow, "_BaseColor");
-        }
-    }
-
-    protected override void OnCollisionExit(Collision other)
-    {
-        SetRendererColor(Color.white, "_BaseColor");
-        SetRendererColor(Core.Ins.UIEffectsManager.GetColorForElement(_currentElement));
-        //Dev.Log("sword on collision exit");
-    }
+    // protected override void OnCollisionStay(Collision other)
+    // {
+    //     if (other.gameObject.TryGetComponent<IDamageDealer>(out IDamageDealer dealer))
+    //     {
+    //         SetRendererColor(Color.yellow, "_BaseColor");
+    //     }
+    // }
+    //
+    // protected override void OnCollisionExit(Collision other)
+    // {
+    //     //SetRendererColor(Color.white, "_BaseColor");
+    //     SetRendererColor(Core.Ins.UIEffectsManager.GetColorForElement(_currentElement));
+    //     //Dev.Log("sword on collision exit");
+    // }
 
     
     // public void ReceiveDamage(IDamageDealer damageDealer)
@@ -99,5 +99,22 @@ public class ShootingTarget : DamageReceiverBase
     {
         OnTargetDestroyed?.Invoke(this);
         Destroy(this.gameObject);
+    }
+    
+    protected override void ChangeElemental(Enum_Elements newElement)
+    {
+        base.ChangeElemental(newElement);
+        SetRendererColor(Core.Ins.UIEffectsManager.GetColorForElement(_currentElement));
+    }
+    [SerializeField]
+    private float colorCooldown = 0.5f;
+
+    
+    protected override void CleanDamageVisual()
+    {
+        if (Time.time > OnHitTime + colorCooldown)
+        {
+            SetRendererColor(Core.Ins.UIEffectsManager.GetColorForElement(_currentElement));
+        }
     }
 }

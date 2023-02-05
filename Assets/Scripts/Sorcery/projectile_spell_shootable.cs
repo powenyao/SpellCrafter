@@ -117,7 +117,7 @@ public class projectile_spell_shootable : SpellBase
         {
             if (_composition.GetEffects().Contains(Enum_SpellComponents_Effects.PassThrough))
             {
-                Dev.Log("Has passthrough");
+//                Dev.Log("Has passthrough");
             }
             else
             {

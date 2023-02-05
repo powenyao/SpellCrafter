@@ -22,6 +22,8 @@ public class DamageReceiverBase : MonoBehaviour, IDamageReceiver
     [SerializeField]
     private bool _hasVisualFeedback = true;
 
+    protected float OnHitTime = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,12 @@ public class DamageReceiverBase : MonoBehaviour, IDamageReceiver
     // Update is called once per frame
     void Update()
     {
+        CleanDamageVisual();
+    }
+
+    protected virtual void CleanDamageVisual()
+    {
+        
     }
 
     public void ReceiveDamage(IDamageDealer damageDealer)
@@ -129,7 +137,8 @@ public class DamageReceiverBase : MonoBehaviour, IDamageReceiver
 
         //Visuals
         SetRendererColor(Color.red, "_BaseColor");
-
+        OnHitTime = Time.time;
+        
         var color = Core.Ins.UIEffectsManager.GetColorForElement(damageDealer.GetDamageElement());
         Core.Ins.UIEffectsManager.RequestPopUp(this.transform, effectiveDamageVal.ToString(), color);
 

@@ -10,15 +10,30 @@ public static class SpellComponentReference
 
     public static float GetElementalDamageMultiplier(Enum_Elements dealerElement, Enum_Elements receiveElement)
     {
-        if (receiveElement == dealerElement && dealerElement != Enum_Elements.GrayNormal)
+        //Alt version
+        if (dealerElement == Enum_Elements.GrayNormal)
         {
-            //Dev.Log("Elemental Multiplier of 3");
-            return 3;
+            return 1;
+        }
+        else if (receiveElement == dealerElement)
+        {
+            return 2;
         }
         else
         {
-            //Dev.Log("Elemental Multiplier of 1");
-            return 1;
+            return 0.5f;
         }
+
+        //Simple version
+        // if (receiveElement == dealerElement && dealerElement != Enum_Elements.GrayNormal)
+        // {
+        //     //Dev.Log("Elemental Multiplier of 3");
+        //     return 3;
+        // }
+        // else
+        // {
+        //     //Dev.Log("Elemental Multiplier of 1");
+        //     return 1;
+        // }
     }
 }
