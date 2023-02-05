@@ -98,15 +98,15 @@ public class Launcher_Player : LauncherBase
             }
         }
 
-        if(Physics.Raycast(launchTransform.position, launchTransform.forward, out Hit, maxLaserDistance)){
-        //if(Physics.Raycast(transform.position, transform.forward, out Hit, maxLaserDistance, ~ignoredLayers)){
-            hitBlocked = true;
-            // do stuff
-        }
-        else
-        {
-            hitBlocked = false;
-        }
+        // if(Physics.Raycast(launchTransform.position, launchTransform.forward, out Hit, maxLaserDistance)){
+        // //if(Physics.Raycast(transform.position, transform.forward, out Hit, maxLaserDistance, ~ignoredLayers)){
+        //     hitBlocked = true;
+        //     // do stuff
+        // }
+        // else
+        // {
+        //     hitBlocked = false;
+        // }
     }
 
     void DebugUpdate()
