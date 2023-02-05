@@ -34,7 +34,7 @@ public static class CraftingAspects
             //     Enum_Elements.TealAnemo.ToString(),
             //     Enum_Elements.PurpleElectro.ToString(),
             //     Enum_Elements.BlueHydro.ToString()}
-            Enum.GetNames(typeof(Enum_Elements))
+            Enum.GetNames(typeof(Enum_Elements)).Skip(1).ToArray()
         },
         {
             AspectName.Forms,

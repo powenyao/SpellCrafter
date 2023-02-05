@@ -38,7 +38,7 @@ public class SpellComposition
     public SpellComposition()
     {
         _shape = Enum_SpellShapes.Sphere;
-        _element = Enum_Elements.GrayNormal;
+        _element = Enum_Elements.OrangePyro;
         // effectsList = new List<Enum_SpellEffects>();
         _isElementReady = true;
         _isShapeReady = true;

@@ -145,12 +145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8baec82336e2847a7f36bad9c8d93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 15
-  assignedRenderer: {fileID: 4837821981754468383}
-  outlineRenderer: {fileID: 3547559272634678737}
+  hp: 10
   AC_OnHit: {fileID: 0}
   _currentElement: 0
-  _listSpellComponents: 
+  assignedRenderer: {fileID: 4837821981754468383}
+  outlineRenderer: {fileID: 3547559272634678737}
+  _hasVisualFeedback: 1
+  colorCooldown: 0.5
 --- !u!54 &4428460524720630484
 Rigidbody:
   m_ObjectHideFlags: 0
