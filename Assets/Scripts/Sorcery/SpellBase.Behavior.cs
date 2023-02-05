@@ -7,6 +7,11 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     //[SerializeField] protected Enum_SpellBehaviors behaviorType = Enum_SpellBehaviors.Path;
     [SerializeField] private float moveSpeed = 15f;
     [SerializeField] private float rotateSpeed = 95f;
+    [SerializeField] protected float rotateInit;
+    [SerializeField] protected float rotatePace;
+    protected float rotateValue = 0f;
+    [SerializeField] protected float enableHomingTime;
+    protected float enableHomingTimer;
 
     [SerializeField]
     private Rigidbody _rigidbody;
@@ -30,9 +35,38 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
         }
 
         _rigidbody.velocity = transform.forward * moveSpeed;
-        
-        var targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-        _rigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed));
+
+        switch (_composition.GetTracking())
+        {
+            case Enum_SpellComponents_Tracking.Partial:
+            {
+                rotateValue = rotateSpeed;
+
+                var targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+                _rigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, rotateValue));
+
+                break;
+            }
+            case Enum_SpellComponents_Tracking.Full:
+            {
+                //rotateValue += rotatePace;
+                if (enableHomingTimer > enableHomingTime)
+                {
+                    rotateValue = 180f;
+
+                    var targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+                    _rigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, rotateValue));
+                }
+                else
+                {
+                    StraightMove(transform.forward);
+                }
+
+                break;
+            }
+        }
+
+        enableHomingTimer += Time.deltaTime;
     }
 
     protected void StraightMove(Vector3 direction)

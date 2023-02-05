@@ -144,9 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e709b985e5b9ca45be67d0089370baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviorType: 1
   moveSpeed: 25
   rotateSpeed: 5
+  rotateInit: 1
+  rotatePace: 0.1
+  enableHomingTime: 0.2
   _rigidbody: {fileID: 8411429147571754510}
   damageValue: 5
   elementType: 0
