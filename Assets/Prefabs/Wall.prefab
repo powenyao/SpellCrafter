@@ -115,4 +115,4 @@ MonoBehaviour:
   _currentElement: 0
   assignedRenderer: {fileID: 0}
   outlineRenderer: {fileID: 0}
-  _hasVisualFeedback: 1
+  _hasVisualFeedback: 0
