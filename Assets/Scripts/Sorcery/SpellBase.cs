@@ -85,6 +85,10 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     {
         //TODO release payload
         
+        
+        var sfx = Instantiate (Resources.Load ("BalloonPopExplosion") as GameObject);
+        sfx.transform.position = this.transform.position;
+        
         isCompleted = true;
         //Dev.Log("isCompleted " + isCompleted);
     }

@@ -168,7 +168,7 @@ public class projectile_spell_shootable : SpellBase
         // }
     }
 
-    private RaycastHit[] _hitInfo;
+    private RaycastHit[] _hitInfo = new RaycastHit[10];
 
     public override void SearchTarget()
     {
@@ -177,7 +177,7 @@ public class projectile_spell_shootable : SpellBase
         foreach (var hit in _hitInfo)
         {
             GameObject hitObj = hit.transform.gameObject;
-            if (hitObj.TryGetComponent(out IDamageReceiver receiver))
+            if (hitObj.TryGetComponent(out ITarget receiver))
             {
                 _targetObj = hitObj;
                 break;

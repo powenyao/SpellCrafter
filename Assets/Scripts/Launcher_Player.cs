@@ -5,11 +5,17 @@ using UnityEngine.InputSystem;
 
 public class Launcher_Player : LauncherBase
 {
+    [SerializeField]
+    private LineRenderer _lineRenderer;
+    
     protected override void Setup()
     {
         base.Setup();
         _launcherIdentifier = "Player";
         sorcery.PrepSpellWithComposition(_launcherIdentifier, new SpellComposition(), true);
+        
+        //_lineRenderer.SetPosition(0, launchTransform.position);
+        //_lineRenderer.SetPosition(1, launchTransform.position + launchTransform.forward*50);
     }
     
     [ContextMenu("Compose Spell With Widen")]
@@ -56,7 +62,39 @@ public class Launcher_Player : LauncherBase
         sorcery.PrepSpell(_launcherIdentifier, Enum_SpellComponentCategories.Effects, Enum_SpellComponents_Effects.SpeedUp.ToString());
     }
 
+    
+    RaycastHit Hit;
+    private bool hitBlocked = false;
+    float maxLaserDistance = 50f;
     void Update()
+    {
+        DebugUpdate();
+        
+        if (_lineRenderer) 
+        {
+            _lineRenderer.SetPosition(0, launchTransform.position);
+            if (hitBlocked) // we've hit something, so our line renderer end point should stop here
+            {
+                _lineRenderer.SetPosition(1, Hit.point);
+            }
+            else
+            {
+                _lineRenderer.SetPosition(1, launchTransform.position + launchTransform.forward * maxLaserDistance);
+            }
+        }
+
+        if(Physics.Raycast(launchTransform.position, launchTransform.forward, out Hit, maxLaserDistance)){
+        //if(Physics.Raycast(transform.position, transform.forward, out Hit, maxLaserDistance, ~ignoredLayers)){
+            hitBlocked = true;
+            // do stuff
+        }
+        else
+        {
+            hitBlocked = false;
+        }
+    }
+
+    void DebugUpdate()
     {
         Keyboard kb = InputSystem.GetDevice<Keyboard>(); //Setup
         
