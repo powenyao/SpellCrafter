@@ -8,4 +8,5 @@ public class LevelDetails : MonoBehaviour
     public string TutorialText;
     [TextArea]
     public string CompletionText;
+    public bool IsFinal = false;
 }

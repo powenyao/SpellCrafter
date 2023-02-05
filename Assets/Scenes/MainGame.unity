@@ -170,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TutorialText: Welcome to the school of sorcery and spell craft!
   CompletionText: That was easy. Let's move on...
+  IsFinal: 0
 --- !u!1001 &50006554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -355,7 +356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 111612681}
   m_Layer: 0
-  m_Name: MoveLevels
+  m_Name: BackupLevels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -791,6 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TutorialText: Now let's try using the "Passthrough" modifier with the right element.
   CompletionText: In the real world, you want to use spells cleverly to save cost.
+  IsFinal: 0
 --- !u!1001 &405006146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1372,6 +1374,7 @@ MonoBehaviour:
   TutorialText: Spells can be of various elements, such as fire, water or electricity.
     Use Tab to choose the right element for a quick kill.
   CompletionText: Awesome!
+  IsFinal: 0
 --- !u!1 &580625157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,52 +1410,6 @@ Transform:
   m_Father: {fileID: 111612681}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &714705846
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 714705847}
-  - component: {fileID: 714705848}
-  m_Layer: 0
-  m_Name: Final
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &714705847
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714705846}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1529797084}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &714705848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714705846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c7879c68472be45948cd16be830bed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TutorialText: Training complete! But can you do better?
-  CompletionText: 
 --- !u!1 &754559515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1790,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialText: You know what to do...
-  CompletionText: 
+  CompletionText: Training complete! But can you do better?
+  IsFinal: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,8 +2366,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2786,7 +2744,6 @@ Transform:
   - {fileID: 517255859}
   - {fileID: 379474169}
   - {fileID: 801817096}
-  - {fileID: 714705847}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
