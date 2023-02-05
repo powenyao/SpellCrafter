@@ -77,6 +77,7 @@ public class Manager_Debug : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        /*
         foreach (var keyValuePair in _debugCodeKeyboardKeyUpList)
         {
             if (keyValuePair.Value.KeyState == Enum_KeyState.KeyUp && Input.GetKeyUp(keyValuePair.Key))
@@ -100,6 +101,7 @@ public class Manager_Debug : MonoBehaviour
                 keyValuePair.Value.Action.Invoke();
             }
         }
+        */
     }
 
     private int debugButtonStartX = 10 + 200*0;
@@ -111,6 +113,7 @@ public class Manager_Debug : MonoBehaviour
 
     private void OnGUI()
     {
+        /*
         int i = 0;
         if (GUI.Button(new Rect(debugButtonStartX, debugButtonStartY + debugButtonHeight * i, debugButtonWidth,
                     debugButtonHeight), "Show/Hide Debug Code " + _debugCodeKeyboardKeyUpList.Count))
@@ -144,5 +147,6 @@ public class Manager_Debug : MonoBehaviour
 
             i++;
         }
+        */
     }
 }
