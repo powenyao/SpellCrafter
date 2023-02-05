@@ -101,9 +101,9 @@ public class Missile : MonoBehaviour, IDamageDealer, IPooledObject
         throw new NotImplementedException();
     }
 
-    public bool CanOverkill()
+    public bool CanPassthrough()
     {
-        return true;
+        return false;
     }
 
 

@@ -7,4 +7,18 @@ public static class SpellComponentReference
     public static float Widen_ScaleMultiplier = 2f;
     public static float Concentrate_DamageMultiplier = 2f;
     public static float Speedup_Multiplier = 2f;
+
+    public static float GetElementalDamageMultiplier(Enum_Elements dealerElement, Enum_Elements receiveElement)
+    {
+        if (receiveElement == dealerElement && dealerElement != Enum_Elements.GrayNormal)
+        {
+            //Dev.Log("Elemental Multiplier of 3");
+            return 3;
+        }
+        else
+        {
+            //Dev.Log("Elemental Multiplier of 1");
+            return 1;
+        }
+    }
 }

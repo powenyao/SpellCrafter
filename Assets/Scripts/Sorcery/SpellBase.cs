@@ -34,10 +34,14 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
 
     public virtual void DamageTakenByReceiver(float actualDamageValueUtilized)
     {
-        //Dev.Log("[SpellBase.cs] DamageTakenByReceiver ");
+//        Dev.Log("[SpellBase.cs] DamageTakenByReceiver " +actualDamageValueUtilized);
+        
         if (_composition.GetEffects().Contains(Enum_SpellComponents_Effects.PassThrough))
         {
-            damageValue -= Mathf.CeilToInt(actualDamageValueUtilized);
+//            Dev.Log("[SpellBase.cs] DamageTakenByReceiver Before" + damageValue);
+            //damageValue -= Mathf.CeilToInt(actualDamageValueUtilized);
+            damageValue -= actualDamageValueUtilized;
+//            Dev.Log("[SpellBase.cs] DamageTakenByReceiver After" + damageValue);
             if (damageValue <= 0)
             {
                 damageValue = 0;
@@ -48,10 +52,9 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
         }
     }
 
-    public virtual bool CanOverkill()
+    public virtual bool CanPassthrough()
     {
         return _composition.GetEffects().Contains(Enum_SpellComponents_Effects.PassThrough);
-        //return true;
     }
 
     public void ChangeElement(Enum_Elements element)
@@ -122,5 +125,7 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
                     throw new ArgumentOutOfRangeException();
             }
         }
+        
+        
     }
 }

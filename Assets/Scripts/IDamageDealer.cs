@@ -15,7 +15,7 @@ public interface IDamageDealer
 
 
     void DamageTakenByReceiver(float actualDamageValueUtilized);
-    bool CanOverkill();
+    bool CanPassthrough();
 }
 
 public interface IDamageReceiver

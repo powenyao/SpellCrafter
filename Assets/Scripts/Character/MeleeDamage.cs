@@ -29,7 +29,7 @@ public class MeleeDamage : MonoBehaviour, IDamageDealer
         throw new System.NotImplementedException();
     }
 
-    public bool CanOverkill()
+    public bool CanPassthrough()
     {
         return true;
     }
