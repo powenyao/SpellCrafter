@@ -120,8 +120,8 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
             {
                 case Enum_SpellComponents_Effects.None:
                     break;
-                case Enum_SpellComponents_Effects.Pull:
-                    break;
+                //case Enum_SpellComponents_Effects.Pull:
+                    //break;
                 case Enum_SpellComponents_Effects.Widen:
                     this.transform.localScale *= SpellComponentReference.Widen_ScaleMultiplier;
                     break;
@@ -131,8 +131,8 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
                 case Enum_SpellComponents_Effects.SpeedUp:
                     moveSpeed *= SpellComponentReference.Speedup_Multiplier;
                     break;
-                case Enum_SpellComponents_Effects.AoE:
-                    break;
+                //case Enum_SpellComponents_Effects.AoE:
+                    //break;
                 case Enum_SpellComponents_Effects.PassThrough:
                     break;
                 case Enum_SpellComponents_Effects.SpeedDown:

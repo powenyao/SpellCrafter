@@ -7,6 +7,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 109277830087010822, guid: 0a9a32619ddb6654393f03ad9d333d78,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: af1172bde01f7e44192253bf78b53601, type: 2}
+    - target: {fileID: 109277830087010822, guid: 0a9a32619ddb6654393f03ad9d333d78,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 109277830087010822, guid: 0a9a32619ddb6654393f03ad9d333d78,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 109277830087010822, guid: 0a9a32619ddb6654393f03ad9d333d78,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.021995544
+      objectReference: {fileID: 0}
     - target: {fileID: 1705086993495559361, guid: 0a9a32619ddb6654393f03ad9d333d78,
         type: 3}
       propertyPath: m_RootOrder
