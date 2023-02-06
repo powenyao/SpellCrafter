@@ -5267,7 +5267,7 @@ PrefabInstance:
     - target: {fileID: 8385585527194456186, guid: a4dcab49c0d6e984e83559029c574eee,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 8385585527194456186, guid: a4dcab49c0d6e984e83559029c574eee,
         type: 3}
@@ -5312,12 +5312,12 @@ PrefabInstance:
     - target: {fileID: 8385585527194456186, guid: a4dcab49c0d6e984e83559029c574eee,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 175
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8385585527194456186, guid: a4dcab49c0d6e984e83559029c574eee,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 70
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8385585527194456186, guid: a4dcab49c0d6e984e83559029c574eee,
         type: 3}
@@ -5338,6 +5338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: QuitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385585528201879217, guid: a4dcab49c0d6e984e83559029c574eee,
+        type: 3}
+      propertyPath: m_text
+      value: Abort Run
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4dcab49c0d6e984e83559029c574eee, type: 3}
@@ -5492,7 +5497,7 @@ PrefabInstance:
     - target: {fileID: 9074003474901727289, guid: 6a076c15b868e77499e0ac58022d5b20,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 9074003474901727289, guid: 6a076c15b868e77499e0ac58022d5b20,
         type: 3}
@@ -5537,12 +5542,12 @@ PrefabInstance:
     - target: {fileID: 9074003474901727289, guid: 6a076c15b868e77499e0ac58022d5b20,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -175
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 9074003474901727289, guid: 6a076c15b868e77499e0ac58022d5b20,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 70
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 9074003474901727289, guid: 6a076c15b868e77499e0ac58022d5b20,
         type: 3}
@@ -5558,6 +5563,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119691152519751622, guid: 6a076c15b868e77499e0ac58022d5b20,
+        type: 3}
+      propertyPath: m_text
+      value: Retry Level
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a076c15b868e77499e0ac58022d5b20, type: 3}

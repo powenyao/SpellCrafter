@@ -3,8 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class ReplayButton : MonoBehaviour
 {
+    GameManager gmRef;
+
+    private void Start()
+    {
+        gmRef = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     public void ReplayGame()
     {
-        SceneManager.LoadScene("MainGame");
+        gmRef.RestartLevel();
     }
 }

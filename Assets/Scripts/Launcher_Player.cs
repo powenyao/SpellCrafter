@@ -81,7 +81,7 @@ public class Launcher_Player : LauncherBase
     RaycastHit Hit;
     private bool hitBlocked = false;
     float maxLaserDistance = 50f;
-    void Update()
+    void LateUpdate()
     {
         //DebugUpdate();
         
