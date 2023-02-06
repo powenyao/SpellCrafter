@@ -5699,7 +5699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialText: This time, let's use the right element for a quick finish. Press
-    Tab to open your crafting menu and change elements.
+    Tab (or right click) to open your crafting menu and change elements.
   CompletionText: There is a lot more to learn about crafting, as you'll see.
   IsFinal: 0
 --- !u!1 &1747423319

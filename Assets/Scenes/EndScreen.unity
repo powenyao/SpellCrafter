@@ -1602,6 +1602,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1630949575}
     m_Modifications:
+    - target: {fileID: 6615701471303085688, guid: 6a076c15b868e77499e0ac58022d5b20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
     - target: {fileID: 7203328998533864115, guid: 6a076c15b868e77499e0ac58022d5b20,
         type: 3}
       propertyPath: m_Name

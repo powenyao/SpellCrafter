@@ -14,4 +14,9 @@ public class ReplayButton : MonoBehaviour
     {
         gmRef.RestartLevel();
     }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("MainGame");
+    }
 }
