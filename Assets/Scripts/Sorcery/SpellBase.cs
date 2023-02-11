@@ -6,22 +6,25 @@ using UnityEngine;
 //public partial class SpellBase : XrosGrabInteractableSubscriber_Base, IDamageDealer
 public partial class SpellBase : MonoBehaviour, IDamageDealer
 {
-    [SerializeField] private float damageValue = 5;
+    [SerializeField]
+    private float damageValue = 5;
 
     // params about FORM
-    [SerializeField] private Enum_Elements elementType;
+    [SerializeField]
+    private Enum_Elements elementType;
 
     [SerializeField]
     private SpellBaseVisualization _visualization;
-    
+
     protected bool isCasted = false;
+
     //track this variable
     protected float _timeSinceCast = 0f;
-    
+
     protected bool isCompleted = false;
 
     protected SpellComposition _composition;
-    
+
     public float GetDamageValue()
     {
         return damageValue;
@@ -35,7 +38,7 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     public virtual void DamageTakenByReceiver(float actualDamageValueUtilized)
     {
 //        Dev.Log("[SpellBase.cs] DamageTakenByReceiver " +actualDamageValueUtilized);
-        
+
         if (_composition.GetEffects().Contains(Enum_SpellComponents_Effects.PassThrough))
         {
 //            Dev.Log("[SpellBase.cs] DamageTakenByReceiver Before" + damageValue);
@@ -47,7 +50,7 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
                 damageValue = 0;
                 Complete();
             }
-            
+
             //Dev.Log("damageValue " + damageValue);
         }
     }
@@ -60,7 +63,7 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
     public void ChangeElement(Enum_Elements element)
     {
         elementType = element;
-        
+
         _visualization.ChangeElement(elementType);
     }
 
@@ -78,7 +81,6 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
 
     public virtual void OnComplete()
     {
-        
     }
 
     public virtual void Complete()
@@ -96,32 +98,36 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
             payload.Setup();
             payload.TryTrigger();
         }
-        
-        var sfx = Instantiate (Resources.Load ("BalloonPopExplosion") as GameObject);
-        sfx.transform.position = this.transform.position;
-        
+
+        OnCollisionEnterEffect();
         isCompleted = true;
         //Dev.Log("isCompleted " + isCompleted);
     }
-    
+
+    protected virtual void OnCollisionEnterEffect()
+    {
+        //TODO change to objectpool
+        var sfx = Instantiate(Resources.Load("BalloonPopExplosion") as GameObject);
+        sfx.transform.position = this.transform.position;
+    }
+
     public virtual void Process()
     {
-        
     }
 
     public void SetupComposition(SpellComposition composition)
     {
         _composition = composition;
-        
+
         List<Enum_SpellComponents_Effects> listEffect = composition.GetEffects();
         foreach (var e in listEffect)
         {
-            switch(e)
+            switch (e)
             {
                 case Enum_SpellComponents_Effects.None:
                     break;
                 //case Enum_SpellComponents_Effects.Pull:
-                    //break;
+                //break;
                 case Enum_SpellComponents_Effects.Widen:
                     this.transform.localScale *= SpellComponentReference.Widen_ScaleMultiplier;
                     break;
@@ -132,7 +138,7 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
                     moveSpeed *= SpellComponentReference.Speedup_Multiplier;
                     break;
                 //case Enum_SpellComponents_Effects.AoE:
-                    //break;
+                //break;
                 case Enum_SpellComponents_Effects.PassThrough:
                     break;
                 case Enum_SpellComponents_Effects.SpeedDown:
@@ -143,7 +149,5 @@ public partial class SpellBase : MonoBehaviour, IDamageDealer
                     throw new ArgumentOutOfRangeException();
             }
         }
-        
-        
     }
 }

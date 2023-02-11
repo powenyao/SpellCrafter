@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     float switchDelay = 2f;
+
     [SerializeField]
     bool autoProgress = true;
 
@@ -53,11 +54,12 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("Debug")]
-
     [SerializeField]
     InputActionReference goNextAction;
+
     [SerializeField]
     InputActionReference goPrevAction;
+
     [SerializeField]
     InputActionReference restartAction;
 
@@ -81,9 +83,12 @@ public class GameManager : MonoBehaviour
             SetLevelScoreStats(numSpellsCast + 1, totalSpellCost + cost);
         };
 
-        // goNextAction.action.performed += obj => StartCoroutine(NextLevelAsync());
-        // goPrevAction.action.performed += obj => StartCoroutine(PreviousLevelAsync());
-        // restartAction.action.performed += obj => StartCoroutine(RestartLevelAsync());
+        if (DebugOption.IsAvailable)
+        {
+            goNextAction.action.performed += obj => StartCoroutine(NextLevelAsync());
+            goPrevAction.action.performed += obj => StartCoroutine(PreviousLevelAsync());
+            restartAction.action.performed += obj => StartCoroutine(RestartLevelAsync());
+        }
     }
 
     // Start is called before the first frame update
@@ -97,7 +102,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     private void LoadCurrentLevel()
@@ -117,6 +121,7 @@ public class GameManager : MonoBehaviour
             enemy.OnTargetDestroyed += HandleTargetDestroyed;
             enemyCount++;
         }
+
         numEnemiesAlive = enemyCount;
         SetLevelScoreStats(0, 0);
 
@@ -146,6 +151,7 @@ public class GameManager : MonoBehaviour
         {
             enemy.OnTargetDestroyed -= HandleTargetDestroyed;
         }
+
         Destroy(currentLevel);
     }
 
