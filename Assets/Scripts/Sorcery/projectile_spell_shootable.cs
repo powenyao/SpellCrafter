@@ -24,7 +24,18 @@ public class projectile_spell_shootable : SpellBase
 
     void Update()
     {
-        Process();
+        if (!isPhysical)
+        {
+            Process();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (isPhysical)
+        {
+            Process();
+        }
     }
 
     // protected override void OnSelectExited(SelectExitEventArgs args)
@@ -37,6 +48,8 @@ public class projectile_spell_shootable : SpellBase
 
     public override void Cast(GameObject target = null)
     {
+        ResetStatus();
+
         if (target)
         {
             //Aim the spell at where the controller is pointing at
@@ -53,9 +66,23 @@ public class projectile_spell_shootable : SpellBase
 
         if (_composition.GetTracking() == Enum_SpellComponents_Tracking.None)
         {
+            isPhysical = true;
+
             switch (_composition.GetPath())
             {
-                case Enum_SpellComponents_Path.Curved:
+                case Enum_SpellComponents_Path.Curved_Left:
+                {
+                    SetCurvedMode();
+
+                    break;
+                }
+                case Enum_SpellComponents_Path.Curved_Right:
+                {
+                    SetCurvedMode();
+
+                    break;
+                }
+                case Enum_SpellComponents_Path.Curved_Up:
                 {
                     SetCurvedMode();
 
@@ -64,6 +91,42 @@ public class projectile_spell_shootable : SpellBase
                 case Enum_SpellComponents_Path.Parabola:
                 {
                     SetRigidBodyForParabola();
+
+                    break;
+                }
+                case Enum_SpellComponents_Path.Spiral:
+                {
+                    SetSpiralMode();
+
+                    break;
+                }
+                case Enum_SpellComponents_Path.Spiral_TestLocal:
+                {
+                    SetSpiralMode();
+
+                    break;
+                }
+                case Enum_SpellComponents_Path.SineWave_Horizontal:
+                {
+                    SetSineWaveMode();
+
+                    break;
+                }
+                case Enum_SpellComponents_Path.SineWave_Vertical:
+                {
+                    SetSineWaveMode();
+
+                    break;
+                }
+                case Enum_SpellComponents_Path.Manhattan_Horizontal:
+                {
+                    SetManhattanMode();
+
+                    break;
+                }
+                case Enum_SpellComponents_Path.Manhattan_Vertical:
+                {
+                    SetManhattanMode();
 
                     break;
                 }
@@ -90,7 +153,14 @@ public class projectile_spell_shootable : SpellBase
         {
             Moving();
 
-            _timeSinceCast += Time.deltaTime;
+            if (isPhysical)
+            {
+                _timeSinceCast += Time.fixedDeltaTime;
+            }
+            else
+            {
+                _timeSinceCast += Time.deltaTime;
+            }
         }
 
         if (_withoutTarget && _timeSinceCast > terminateTime)
@@ -144,9 +214,49 @@ public class projectile_spell_shootable : SpellBase
                     {
                         break;
                     }
-                    case Enum_SpellComponents_Path.Curved:
+                    case Enum_SpellComponents_Path.Curved_Left:
                     {
                         CurvedMove();
+                        break;
+                    }
+                    case Enum_SpellComponents_Path.Curved_Right:
+                    {
+                        CurvedMove();
+                        break;
+                    }
+                    case Enum_SpellComponents_Path.Curved_Up:
+                    {
+                        CurvedMove();
+                        break;
+                    }
+                    case Enum_SpellComponents_Path.Spiral:
+                    {
+                        SpiralMove();
+                        break;
+                    }
+                    case Enum_SpellComponents_Path.Spiral_TestLocal:
+                    {
+                        SpiralMove();
+                        break;
+                    }
+                    case Enum_SpellComponents_Path.SineWave_Horizontal:
+                    {
+                        SineWaveMove();
+                        break;
+                    }
+                    case Enum_SpellComponents_Path.SineWave_Vertical:
+                    {
+                        SineWaveMove();
+                        break;
+                    }
+                    case Enum_SpellComponents_Path.Manhattan_Horizontal:
+                    {
+                        ManhattanMove();
+                        break;
+                    }
+                    case Enum_SpellComponents_Path.Manhattan_Vertical:
+                    {
+                        ManhattanMove();
                         break;
                     }
                     default:
@@ -220,8 +330,9 @@ public class projectile_spell_shootable : SpellBase
 
     public override void SearchTarget()
     {
-        rotateValue = rotateInit;
-        enableHomingTimer = 0f;
+        //rotateValue = rotateInit;
+        //enableFullHomingTimer = 0f;
+        //ResetTimers();
 
         Physics.SphereCastNonAlloc(transform.position, searchRadius, transform.forward, _hitInfo);
 

@@ -89,11 +89,16 @@ public enum Enum_SpellComponents_Tracking
 public enum Enum_SpellComponents_Path
 {
     None,
-    //Spiral,
-    Curved,
+    Spiral,
+    Spiral_TestLocal,
+    Curved_Left,
+    Curved_Right,
+    Curved_Up,
     Straight,
-    //Manhattan,
-    //SineWave,
+    Manhattan_Horizontal,
+    Manhattan_Vertical,
+    SineWave_Horizontal,
+    SineWave_Vertical,
     Parabola
 }
 

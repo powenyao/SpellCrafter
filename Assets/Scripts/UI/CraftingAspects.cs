@@ -50,11 +50,12 @@ public static class CraftingAspects
         },
         {
             AspectName.Tracking,
-            new string[] { Enum_SpellComponents_Tracking.None.ToString(), Enum_SpellComponents_Tracking.Full.ToString() }
+            //new string[] { Enum_SpellComponents_Tracking.None.ToString(), Enum_SpellComponents_Tracking.Full.ToString() }
+            Enum.GetNames(typeof(Enum_SpellComponents_Tracking))
         },
         {
             AspectName.Path,
-            new string[] { Enum_SpellComponents_Path.None.ToString(), Enum_SpellComponents_Path.Parabola.ToString() }
+            Enum.GetNames(typeof(Enum_SpellComponents_Path))
         },
         {
             AspectName.Trigger,

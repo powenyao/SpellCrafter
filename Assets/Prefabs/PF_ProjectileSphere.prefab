@@ -146,11 +146,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 25
-  rotateSpeed: 180
-  rotateInit: 1
-  rotatePace: 0.1
-  enableHomingTime: 0.2
-  forceFactor: 10
+  rotateSpeed_PartialTracking: 300
+  rotateSpeedFactor_FullTracking: 80
+  forceFactor_CurvePath: 10
+  elevationAngle_CurvePath: 30
+  tangentialSpeed_SpiralPath: 10
+  rotateRadius_SpiralPath: 1
+  frequency_SineWavePath: 2
+  amplitude_SineWavePath: 300
+  nonStraightTime_ManhattanPath: 0.1
+  straightTime_ManhattanPath: 0.1
   _rigidbody: {fileID: 8411429147571754510}
   damageValue: 10
   elementType: 0
