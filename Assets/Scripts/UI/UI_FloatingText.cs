@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class UI_FloatingText : MonoBehaviour, IPooledObject
@@ -100,7 +102,7 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
 
         appearTimer = appearTime;
 
-        appearMoveVector = CalcMoveVector(appearDirection, appearMoveSpeed, attachedObj);
+        appearMoveVector = CalcMoveVector(appearDirection, appearMoveSpeed);
 
         if (appearFadeIn)
         {
@@ -114,6 +116,8 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
         }
 
         stage = Enum_PopupStage.Appear;
+
+        GetPopupPositionOnColliderSurface(appearDirection);
     }
 
     public void SetupAppearInfo(float time, Vector3 direction, float moveSpeed, 
@@ -124,7 +128,7 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
         appearTime = time;
         appearTimer = appearTime;
 
-        appearMoveVector = CalcMoveVector(direction, moveSpeed, attachedObj);
+        appearMoveVector = CalcMoveVector(direction, moveSpeed);
 
         appearFadeIn = fadeIn;
         if (fadeIn)
@@ -141,6 +145,8 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
         }
 
         stage = Enum_PopupStage.Appear;
+
+        GetPopupPositionOnColliderSurface(direction);
     }
 
     public void SetupStayInfo()
@@ -225,18 +231,9 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
     //    transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z) * scaleFactor;
     //}
 
-    private Vector3 CalcMoveVector(Vector3 direction, float speed, GameObject attachedObj = null)
+    private Vector3 CalcMoveVector(Vector3 direction, float speed)
     {
         Vector3 moveVector = new Vector3(direction.x, direction.y, direction.z);
-        
-        //if (attachedObj != null)
-        //{
-        //    if (attachedObj.TryGetComponent(out Collider newCollider))
-        //    {
-        //        Vector3 size = newCollider.bounds.size;
-        //        transform.position += 
-        //    }
-        //}
 
         return moveVector * speed;
     }
@@ -375,6 +372,49 @@ public class UI_FloatingText : MonoBehaviour, IPooledObject
     private Vector3 NormalizeScale()
     {
         return new Vector3(unnormalizedScale.x, unnormalizedScale.y, unnormalizedScale.z) * scaleFactor;
+    }
+
+    private float GetTargetDistance(RaycastHit hit)
+    {
+        if (hit.transform != null)
+        {
+            return Vector3.Distance(hit.transform.position, transform.position);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    private void GetPopupPositionOnColliderSurface(Vector3 direction)
+    {
+        if (attachedObj != null)
+        {
+            if (attachedObj.TryGetComponent(out Collider newCollider))
+            {
+                Ray ray = new Ray(transform.position, direction);
+                ray.origin = ray.GetPoint(10);
+                ray.direction = -ray.direction;
+
+                RaycastHit[] hits = new RaycastHit[10];
+                Physics.RaycastNonAlloc(ray, hits);
+                List<RaycastHit> list = hits.ToList().OrderBy(o => GetTargetDistance(o)).ToList();
+
+                foreach (var hit in list)
+                {
+                    if (hit.transform == null)
+                    {
+                        //Dev.Log("Here!");
+                        continue;
+                    }
+                    if (ReferenceEquals(hit.transform.gameObject, attachedObj))
+                    {
+                        transform.position = hit.point;
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     //private void PopupAnimation()
